@@ -1,0 +1,15 @@
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Branch Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let branch of BranchList">
+        <th scope="row">{{branch.id}}</th>
+        <td>{{branch.BranchName}}</td>
+      </tr>
+    </tbody>
+  </table>

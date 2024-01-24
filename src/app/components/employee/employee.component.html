@@ -1,0 +1,14 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Employee Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of EmployeeList">
+        <th scope="row">{{employee.id}}</th>
+        <td>{{employee.EmployeeName}}</td>
+      </tr>
+    </tbody>
+  </table>
