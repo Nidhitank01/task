@@ -33,4 +33,8 @@ export class LoginService{
     CreateSession(userLogin:User){
         sessionStorage.setItem(String(userLogin.user),JSON.stringify(userLogin))
     }
+
+    DestroySession(userLogin:User){
+        sessionStorage.clear()
+    }
 }

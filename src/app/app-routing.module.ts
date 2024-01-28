@@ -8,12 +8,12 @@ import { HomeComponent } from './components/home/home.component';
 import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [
   {path:'',component:LoginComponent},
-  {path:'home',component:HomeComponent,children:[
+  {path:'home/:user',component:HomeComponent,children:[
     {path:'employee',component:EmployeeComponent},
     {path:'company',component:CompanyComponent},
     {path:'branches',component:BranchComponent},
     
-]},
+],},
 {path:'signup',component:SignupComponent}
 ];
 

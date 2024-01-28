@@ -10,6 +10,8 @@
       <tr *ngFor="let company of CompanyList">
         <th scope="row">{{company.id}}</th>
         <td>{{company.CompanyName}}</td>
+        <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"><button class="btn btn-success">Edit</button></td>
+        <td *ngIf="allow === 'SuperAdmin'"><button class="btn btn-danger">Delete</button></td>
       </tr>
     </tbody>
   </table>

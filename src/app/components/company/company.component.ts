@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Company } from 'src/app/Model/Company.Model';
 import { CompanyService } from 'src/app/Services/company.service';
 
@@ -9,10 +10,11 @@ import { CompanyService } from 'src/app/Services/company.service';
 })
 export class CompanyComponent {
   CompanyList:Company[]=[]
-  constructor(private CompanyService:CompanyService){
-
+  allow:string
+  constructor(private CompanyService:CompanyService,private route:ActivatedRoute){
   }
   ngOnInit(){
+    this.allow=this.route.snapshot.queryParams['role']
     this.CompanyService.setCompanyList()
     this.CompanyList=JSON.parse(this.CompanyService.getCompanyList())
   }

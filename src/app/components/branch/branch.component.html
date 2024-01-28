@@ -7,9 +7,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let branch of BranchList">
-        <th scope="row">{{branch.id}}</th>
-        <td>{{branch.BranchName}}</td>
+      <tr *ngFor="let branch of BranchList" >
+        
+        <th scope="row"><input type="number" [value]="branch.id" #Id [disabled]="true"></th>
+        <td><input type="text" [value]="branch.BranchName" #BName [disabled]="true"></td>
+        <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"><button class="btn btn-success" (click)="onEdit()">Edit</button></td>
+      
+        <td *ngIf="allow === 'SuperAdmin'"><button class="btn btn-danger" (click)="onDelete(branch)">Delete</button></td>
       </tr>
     </tbody>
   </table>
