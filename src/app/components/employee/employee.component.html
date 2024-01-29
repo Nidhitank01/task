@@ -9,11 +9,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let employee of EmployeeList">
-        <th scope="row">{{employee.id}}</th>
-        <td>{{employee.EmployeeName}}</td>
-        <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"><button class="btn btn-success">Edit</button></td>
-        <td *ngIf="allow === 'SuperAdmin'"><button class="btn btn-danger">Delete</button></td>
+      <tr *ngFor="let Employee of EmployeeList">
+        <th scope="row"><input type="number" [value]="Employee.id" #Id [disabled]="true"></th>
+        <td><input type="text" [value]="Employee.EmployeeName" #CName [disabled]="true"></td>
+        <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"    (click)="onEdit(Id, CName)"><button class="btn btn-primary">Edit</button></td>
+        <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"><button class="btn btn-success"
+          (click)="onUpdate(Id, CName)">Update</button></td>
+        <td *ngIf="allow === 'SuperAdmin'"  (click)="onDelete(Employee)"><button class="btn btn-danger">Delete</button></td>
       </tr>
     </tbody>
   </table>

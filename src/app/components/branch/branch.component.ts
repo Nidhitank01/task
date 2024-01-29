@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnChanges, ViewChild } from '@angular/core';
 import { Branch } from 'src/app/Model/Branch.Model';
 import { BranchService } from 'src/app/Services/branch.service';
 import { OnInit } from '@angular/core';
@@ -8,29 +8,56 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './branch.component.html',
   styleUrls: ['./branch.component.css']
 })
-export class BranchComponent implements OnInit{
- allow:string;
- @ViewChild('Id') BranchId:ElementRef;
- @ViewChild('BName')BranchName:ElementRef;
- disabled=true
-  BranchList:Branch[]=[]
-  constructor(private BranchService:BranchService,private route:ActivatedRoute){
+export class BranchComponent implements OnInit,OnChanges {
+  allow: string;
+  @ViewChild('Id') BranchId: ElementRef;
+  @ViewChild('BName') BranchName: ElementRef;
+  disabled = true
+  BranchList: Branch[] = []
+
+  constructor(private BranchService: BranchService, private route: ActivatedRoute) {
 
   }
-  ngOnInit(){
+
+  ngOnInit() {
     this.BranchService.setBranchList()
-    this.BranchList=JSON.parse(this.BranchService.getBranchList())
-    this.allow=this.route.snapshot.queryParams['role']
+    this.BranchList = JSON.parse(this.BranchService.getBranchList())
+    this.allow = this.route.snapshot.queryParams['role']
+  }
+  ngOnChanges(){
+     this.BranchService.setBranchList()
+     this.BranchList = JSON.parse(this.BranchService.getBranchList())
+  }
+  
+  onEdit(Id: any, BName: any) {
+    
+    Id.disabled = !Id.disabled;
+    BName.disabled = !BName.disabled;
     
   }
+  onUpdate(Id:any,Bname:any){
+    this.BranchService.AllBranch.find((i)=>{
   
- onEdit(){
-  console.log(this.BranchId.nativeElement.value)
-  this.BranchId.nativeElement.disabled===false?this.BranchId.nativeElement.disabled=true:this.BranchId.nativeElement.disabled=false
-  this.BranchName.nativeElement.disabled===false?this.BranchName.nativeElement.disabled=true:this.BranchName.nativeElement.disabled=false
+      if(i.id===parseInt(Id.value)){
+        i.BranchName=Bname.value
+        Id.disabled = !Id.disabled;
+        Bname.disabled = !Bname.disabled;
+        this.ngOnChanges()
+      }
+    })
+    console.log(this.BranchList)
   
- }
- onDelete(branch:Branch){
-
- }
+  }
+  
+  onDelete(branch: Branch) {
+    console.log(typeof(branch.id))
+      let index=this.BranchService.AllBranch.findIndex((i)=>{
+        console.log(typeof(i.id))
+             return i.id===branch.id
+      })
+      console.log(index)
+      this.BranchService.AllBranch.splice(index,1)
+      this.ngOnChanges()
+      console.log(this.BranchList)
+  }
 }

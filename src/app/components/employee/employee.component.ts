@@ -20,5 +20,40 @@ export class EmployeeComponent {
     this.EmployeeService.setEmployeeList()
     this.EmployeeList=JSON.parse(this.EmployeeService.getEmployeeList())
   }
+  ngOnChanges(){
+    this.EmployeeService.setEmployeeList()
+    this.EmployeeList=JSON.parse(this.EmployeeService.getEmployeeList()) 
+   }
+  onEdit(Id: any, BName: any) {
+    
+    Id.disabled = !Id.disabled;
+    BName.disabled = !BName.disabled;
+    
+  }
+  onUpdate(Id:any,Bname:any){
+    this.EmployeeService.AllEmployee.find((i)=>{
   
+      if(i.id===parseInt(Id.value)){
+        i.EmployeeName=Bname.value
+        Id.disabled = !Id.disabled;
+        Bname.disabled = !Bname.disabled;
+        this.ngOnChanges()
+      }
+    })
+    console.log(this.EmployeeList)
+  
+  }
+  
+  onDelete(Employee:Employee) {
+    console.log(typeof(Employee.id))
+      let index=this.EmployeeService.AllEmployee.findIndex((i)=>{
+        console.log(typeof(i.id))
+             return i.id===Employee.id
+      })
+      console.log("i",index)
+      this.EmployeeService.AllEmployee.splice(index,1)
+      this.ngOnChanges()
+      console.log(this.EmployeeList)
+  
+}
 }

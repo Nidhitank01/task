@@ -5,6 +5,7 @@ import { User } from "../Model/User.Model"
     providedIn:'root'
 })
 export class LoginService{
+    userId:string
     // loginInfo:{user:string,password:string,role:string}|any
     AllLoginData:User[]=[
         {
@@ -32,9 +33,19 @@ export class LoginService{
     }
     CreateSession(userLogin:User){
         sessionStorage.setItem(String(userLogin.user),JSON.stringify(userLogin))
+     
+    }
+
+    getUser(user:string){
+        this.userId=user
+    }
+
+    getAccess(){
+        return sessionStorage.getItem('access')
     }
 
     DestroySession(userLogin:User){
         sessionStorage.clear()
     }
+  
 }

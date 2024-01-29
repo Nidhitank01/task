@@ -4,14 +4,19 @@
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Company Name</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let company of CompanyList">
-        <th scope="row">{{company.id}}</th>
-        <td>{{company.CompanyName}}</td>
-        <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"><button class="btn btn-success">Edit</button></td>
-        <td *ngIf="allow === 'SuperAdmin'"><button class="btn btn-danger">Delete</button></td>
+        <th scope="row"><input type="number" [value]="company.id" #Id [disabled]="true"></th>
+        <td><input type="text" [value]="company.CompanyName" #CName [disabled]="true"></td>
+        <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"    (click)="onEdit(Id, CName)"><button class="btn btn-primary">Edit</button></td>
+        <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"><button class="btn btn-success"
+          (click)="onUpdate(Id, CName)">Update</button></td>
+        <td *ngIf="allow === 'SuperAdmin'"  (click)="onDelete(company)"><button class="btn btn-danger">Delete</button></td>
       </tr>
     </tbody>
   </table>

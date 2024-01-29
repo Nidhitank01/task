@@ -11,6 +11,7 @@ import { CompanyComponent } from './components/company/company.component';
 import { BranchComponent } from './components/branch/branch.component';
 import { HomeComponent } from './components/home/home.component';
 import { SignupComponent } from './signup/signup.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 
@@ -23,6 +24,7 @@ import { SignupComponent } from './signup/signup.component';
     BranchComponent,
     HomeComponent,
     SignupComponent,
+    PageNotFoundComponent,
    
    
   ],

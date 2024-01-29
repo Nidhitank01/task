@@ -26,6 +26,10 @@ export class LoginComponent {
     if(this.UserLogin.user===this.username.nativeElement.value && this.UserLogin.password===this.password.nativeElement.value){
       alert('login sucessfull')
       this.loginService.CreateSession(this.UserLogin)
+      sessionStorage.setItem('access','allowed')
+
+      this.loginService.getUser(this.UserLogin.user)
+      
      this.UserLogin.role==='SuperAdmin' ? this.allow='SuperAdmin' :this.UserLogin.role==='Admin' ? this.allow='Admin':this.allow='baseUser'
       this.router.navigate(['home',this.UserLogin.user],{queryParams:{role:this.UserLogin.role},queryParamsHandling:"merge"})
     }
