@@ -16,9 +16,11 @@
     </div>
   </div>
   <div class="col m-1 float-end">
-    <button class="btn btn-warning" *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"  >Add</button> 
+    <button class="btn btn-warning" *ngIf="allow === 'SuperAdmin' || allow ==='Admin'" (click)="addEmployee()">Add</button> 
   </div>
-  
+  <div>
+    <router-outlet></router-outlet>
+  </div>
 </div>
 
 <table class="table" border="2px" >

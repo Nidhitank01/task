@@ -14,6 +14,7 @@ export class EmployeeComponent {
   allow:string
   EmployeeList:Employee[]=[]
   permission:any
+  add:boolean=false
   constructor(private router:Router ,private EmployeeService:EmployeeService,private route:ActivatedRoute){
 
   }
@@ -57,5 +58,9 @@ export class EmployeeComponent {
       this.ngOnChanges()
       console.log(this.EmployeeList)
   
+}
+addEmployee(){
+ this.add=true
+ this.router.navigate(['./add',],{relativeTo:this.route})
 }
 }

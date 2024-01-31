@@ -11,6 +11,7 @@ import { CompanyComponent } from './components/company/company.component';
 import { BranchComponent } from './components/branch/branch.component';
 import { HomeComponent } from './components/home/home.component';
 import { SignupComponent } from './signup/signup.component';
+import { AddEmployeeComponent } from './components/employee/add-employee/add-employee.component';
 
 
 
@@ -24,6 +25,7 @@ import { SignupComponent } from './signup/signup.component';
     BranchComponent,
     HomeComponent,
     SignupComponent,
+    AddEmployeeComponent,
 
    
    
