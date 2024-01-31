@@ -13,7 +13,9 @@ import { EmployeeService } from 'src/app/Services/employee.service';
 export class EmployeeComponent {
   allow:string
   EmployeeList:Employee[]=[]
+  permission:any
   constructor(private router:Router ,private EmployeeService:EmployeeService,private route:ActivatedRoute){
+
   }
   ngOnInit(){
     this.allow=this.route.snapshot.queryParams['role']

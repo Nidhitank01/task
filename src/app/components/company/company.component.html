@@ -15,8 +15,8 @@
         <td><input type="text" [value]="company.CompanyName" #CName [disabled]="true"></td>
         <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"    (click)="onEdit(Id, CName)"><button class="btn btn-primary">Edit</button></td>
         <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"><button class="btn btn-success"
-          (click)="onUpdate(Id, CName)">Update</button></td>
-        <td *ngIf="allow === 'SuperAdmin'"  (click)="onDelete(company)"><button class="btn btn-danger">Delete</button></td>
+          (click)="onUpdate(Id, CName)">Save</button></td>
+        <td *ngIf="allow === 'SuperAdmin'"  (click)="onDelete(company)"><button class="btn btn-danger" [disabled]="!Id.disabled">Delete</button></td>
       </tr>
     </tbody>
   </table>

@@ -15,8 +15,8 @@
         <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"><button class="btn btn-primary"
             (click)="onEdit(Id, BName)">Edit</button></td>
         <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"><button class="btn btn-success"
-              (click)="onUpdate(Id, BName)">Update</button></td>
-        <td *ngIf="allow === 'SuperAdmin'"><button class="btn btn-danger" (click)="onDelete(branch)">Delete</button></td>
+              (click)="onUpdate(Id, BName)">Save</button></td>
+        <td *ngIf="allow === 'SuperAdmin'"><button class="btn btn-danger" (click)="onDelete(branch)" [disabled]="!Id.disabled">Delete</button></td>
     </tr>
   </tbody>
 </table>

@@ -11,10 +11,13 @@ import { CompanyService } from 'src/app/Services/company.service';
 export class CompanyComponent {
   CompanyList:Company[]=[]
   allow:string
+  permission:any
   constructor(private CompanyService:CompanyService,private route:ActivatedRoute){
+   
   }
   ngOnInit(){
     this.allow=this.route.snapshot.queryParams['role']
+   
     this.CompanyService.setCompanyList()
     this.CompanyList=JSON.parse(this.CompanyService.getCompanyList())
   }

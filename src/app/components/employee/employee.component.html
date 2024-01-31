@@ -1,8 +1,33 @@
-<table class="table">
+<div class="row float-end">
+  <div class="col m-1">
+  
+    <div class="btn-group">
+      <button type="button" class="btn btn-secondary">Filter</button>
+      <button type="button" class="btn btn-secondary dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-funnel-fill"></i>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Separated link</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col m-1 float-end">
+    <button class="btn btn-warning" *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"  >Add</button> 
+  </div>
+  
+</div>
+
+<table class="table" border="2px" >
+
     <thead>
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Employee Name</th>
+        <th scope="col">Position</th>
         <th></th>
         <th></th>
         <th></th>
@@ -12,10 +37,12 @@
       <tr *ngFor="let Employee of EmployeeList">
         <th scope="row"><input type="number" [value]="Employee.id" #Id [disabled]="true"></th>
         <td><input type="text" [value]="Employee.EmployeeName" #CName [disabled]="true"></td>
+        <td><input type="text" [value]="Employee.Position" #position [disabled]="true"></td>
         <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"    (click)="onEdit(Id, CName)"><button class="btn btn-primary">Edit</button></td>
         <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"><button class="btn btn-success"
-          (click)="onUpdate(Id, CName)">Update</button></td>
-        <td *ngIf="allow === 'SuperAdmin'"  (click)="onDelete(Employee)"><button class="btn btn-danger">Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
+          (click)="onUpdate(Id, CName)">Save</button></td>
+          <td *ngIf="allow === 'SuperAdmin'"  (click)="onDelete(Employee)"><button class="btn btn-danger" [disabled]="!Id.disabled">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+ 

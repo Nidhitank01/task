@@ -1,5 +1,5 @@
 import { Component, OnInit,OnDestroy, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { User } from 'src/app/Model/User.Model';
 import { LoginService } from 'src/app/Services/login.service';
 @Component({
@@ -11,7 +11,10 @@ export class HomeComponent implements OnInit{
   user:User|any
   username:string; 
   allow:string
-  constructor(private router:Router,private logoutService:LoginService,private route:ActivatedRoute){}
+  permission:any
+  constructor(private router:Router,private logoutService:LoginService,private route:ActivatedRoute, ){
+   
+  }
   ngOnInit(){
     this.username=this.route.snapshot.params['user'];
     this.user=JSON.parse(this.logoutService.getUserInfo(this.username))

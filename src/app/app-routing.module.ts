@@ -6,15 +6,16 @@ import { CompanyComponent } from './components/company/company.component';
 import { BranchComponent } from './components/branch/branch.component';
 import { HomeComponent } from './components/home/home.component';
 import { SignupComponent } from './signup/signup.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { CanActivate, } from './Services/auth-gaurd.service';
+
+import { CanActivate, canActivate, } from './Services/auth-gaurd.service';
 const routes: Routes = [
   {path:'',component:LoginComponent,},
   {path:'signup',component:SignupComponent},
+  // {path:'home/:user',component:HomeComponent},
   {path:'home/:user',component:HomeComponent,children:[
-    {path:'employee',component:EmployeeComponent},
-    {path:'company',component:CompanyComponent},
-    {path:'branches',component:BranchComponent},   
+    {path:'employee',component:EmployeeComponent,data:{Permissions:["SuperAdmin","Admin","baseUser"]},canActivate:[canActivate]},
+    {path:'company',component:CompanyComponent,data:{Permissions:["Admin","SuperAdmin"]},canActivate:[canActivate]},
+    {path:'branches',component:BranchComponent,data:{Permissions:["SuperAdmin"]},canActivate:[canActivate]},   
 ],canActivate:[CanActivate]},
 {path:'**',redirectTo:'/'}
 ];

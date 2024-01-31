@@ -8,19 +8,23 @@ export class EmployeeService {
   AllEmployee:Employee[]=[
     {
       id:1,
-      EmployeeName:'Nidhi'
+      EmployeeName:'Nidhi',
+      Position:'senior'
     },
     {
       id:2,
-      EmployeeName:'Priyanka'
+      EmployeeName:'Priyanka',
+      Position:'junior'
     },
     {
       id:3,
-      EmployeeName:'Ronak'
+      EmployeeName:'Ronak',
+      Position:'new joinee'
     },
     {
       id:4,
-      EmployeeName:'Urvish'
+      EmployeeName:'Urvish',
+      Position:'junior'
     }
   ]
   constructor() { }

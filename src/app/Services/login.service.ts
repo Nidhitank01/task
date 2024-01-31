@@ -1,10 +1,16 @@
 import { Injectable } from "@angular/core"
 import { User } from "../Model/User.Model"
+import { ActivatedRoute } from "@angular/router"
+import { map } from "rxjs"
 
 @Injectable({
     providedIn:'root'
 })
 export class LoginService{
+    permission:string[]=[]
+    constructor(private route:ActivatedRoute){
+     
+    }
     userId:string
     // loginInfo:{user:string,password:string,role:string}|any
     AllLoginData:User[]=[
@@ -32,8 +38,8 @@ export class LoginService{
          return  localStorage.getItem(user)
     }
     CreateSession(userLogin:User){
-        sessionStorage.setItem(String(userLogin.user),JSON.stringify(userLogin))
-     
+        sessionStorage.setItem('User',JSON.stringify(userLogin))
+         
     }
 
     getUser(user:string){

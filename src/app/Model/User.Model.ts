@@ -3,4 +3,5 @@ export class User{
     user:string  = null
     password:string = null
     role:string = null
+
 }

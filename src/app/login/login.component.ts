@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, Output, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../Services/login.service';
 import { User } from '../Model/User.Model';
 
@@ -12,8 +12,8 @@ export class LoginComponent {
   @Input() UserLogin:User
   @ViewChild('username') username:ElementRef;
   @ViewChild('password')password:ElementRef;
-  constructor(private loginService:LoginService,private router:Router){
-  
+  permission:any
+  constructor(private loginService:LoginService,private router:Router,private route:ActivatedRoute){
   }
   ngOnInit(){
     this.loginService.setInfo()
@@ -31,6 +31,7 @@ export class LoginComponent {
       this.loginService.getUser(this.UserLogin.user)
       
      this.UserLogin.role==='SuperAdmin' ? this.allow='SuperAdmin' :this.UserLogin.role==='Admin' ? this.allow='Admin':this.allow='baseUser'
+    console.log(this.permission)
       this.router.navigate(['home',this.UserLogin.user],{queryParams:{role:this.UserLogin.role},queryParamsHandling:"merge"})
     }
   }
