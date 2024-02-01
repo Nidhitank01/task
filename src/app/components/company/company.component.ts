@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Company } from 'src/app/Model/Company.Model';
 import { CompanyService } from 'src/app/Services/company.service';
 
@@ -14,16 +15,15 @@ export class CompanyComponent {
   permission:any
   constructor(private CompanyService:CompanyService,private route:ActivatedRoute){
    
+    this.CompanyList=this.route.snapshot.data['companyData']
   }
   ngOnInit(){
     this.allow=this.route.snapshot.queryParams['role']
-   
     this.CompanyService.setCompanyList()
-    this.CompanyList=JSON.parse(this.CompanyService.getCompanyList())
   }
    ngOnChanges(){
     this.CompanyService.setCompanyList()
-    this.CompanyList=JSON.parse(this.CompanyService.getCompanyList()) 
+    this.CompanyList=this.route.data['companyData']
    }
   onEdit(Id: any, BName: any) {
     

@@ -1,5 +1,5 @@
 
-<table class="table">
+<table class="table table-bordered m-1">
     <thead>
       <tr>
         <th scope="col">Id</th>
@@ -11,7 +11,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let company of CompanyList">
-        <th scope="row"><input type="number" [value]="company.id" #Id [disabled]="true"></th>
+        <td scope="row"><input type="number" [value]="company.id" #Id [disabled]="true"></td>
         <td><input type="text" [value]="company.CompanyName" #CName [disabled]="true"></td>
         <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"    (click)="onEdit(Id, CName)"><button class="btn btn-primary">Edit</button></td>
         <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"><button class="btn btn-success"

@@ -16,16 +16,18 @@ export class EmployeeComponent {
   permission:any
   add:boolean=false
   constructor(private router:Router ,private EmployeeService:EmployeeService,private route:ActivatedRoute){
-
+          
+    this.EmployeeList=this.route.snapshot.data['employeeData']
+    console.log(this.EmployeeList)
   }
   ngOnInit(){
     this.allow=this.route.snapshot.queryParams['role']
     this.EmployeeService.setEmployeeList()
-    this.EmployeeList=JSON.parse(this.EmployeeService.getEmployeeList())
+    // this.EmployeeList=this.EmployeeService.getEmployeeList()
   }
   ngOnChanges(){
     this.EmployeeService.setEmployeeList()
-    this.EmployeeList=JSON.parse(this.EmployeeService.getEmployeeList()) 
+    this.EmployeeList=this.route.snapshot.data['employeeData']
    }
   onEdit(Id: any, BName: any) {
     

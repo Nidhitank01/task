@@ -21,12 +21,12 @@ export class BranchComponent implements OnInit,OnChanges {
 
   ngOnInit() {
     this.BranchService.setBranchList()
-    this.BranchList = JSON.parse(this.BranchService.getBranchList())
+    this.BranchList = this.route.snapshot.data['Branchdata']
     this.allow = this.route.snapshot.queryParams['role']
   }
   ngOnChanges(){
      this.BranchService.setBranchList()
-     this.BranchList = JSON.parse(this.BranchService.getBranchList())
+     this.BranchList = this.route.snapshot.data['Branchdata']
   }
   
   onEdit(Id: any, BName: any) {

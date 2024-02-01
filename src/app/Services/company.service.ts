@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Company } from '../Model/Company.Model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,10 @@ export class CompanyService {
     return localStorage.setItem('CompanyList',JSON.stringify(this.AllCompany))
   }
   getCompanyList(){
-    return localStorage.getItem('CompanyList')
+    return new Observable<Company[]>((emp)=>{
+      setTimeout(()=>{
+        emp.next(JSON.parse(localStorage.getItem('CompanyList')))
+      },1000)
+    })
 }
 }

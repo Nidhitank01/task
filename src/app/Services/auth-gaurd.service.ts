@@ -1,6 +1,9 @@
 import { inject } from "@angular/core"
 import { LoginService } from "./login.service"
 import { ActivatedRoute, ActivatedRouteSnapshot, CanActivateFn, ROUTES, Router } from "@angular/router"
+import { EmployeeService } from "./employee.service"
+import { CompanyService } from "./company.service"
+import { BranchService } from "./branch.service"
 
 export const CanActivate:CanActivateFn = () => {
   const LService = inject(LoginService)
@@ -37,4 +40,17 @@ export const canActivate:CanActivateFn =(
     alert('not allowed')
     return false
   }
+}
+
+export const resolveEmployee=()=>{
+    const eService=inject(EmployeeService)
+    return eService.getEmployeeList()
+}
+export const resolveCompany=()=>{
+  const cService=inject(CompanyService)
+  return cService.getCompanyList()
+}
+export const resolveBranch=()=>{
+  const bService=inject(BranchService)
+  return bService.getBranchList()
 }
