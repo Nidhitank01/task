@@ -54,3 +54,7 @@ export const resolveBranch=()=>{
   const bService=inject(BranchService)
   return bService.getBranchList()
 }
+export const resolveUser=()=>{
+  const uService=inject(LoginService);
+  return uService.AllLoginData
+}

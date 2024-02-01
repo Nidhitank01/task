@@ -13,16 +13,16 @@ export class BranchComponent implements OnInit,OnChanges {
   @ViewChild('Id') BranchId: ElementRef;
   @ViewChild('BName') BranchName: ElementRef;
   disabled = true
-  BranchList: Branch[] = []
+  BranchList: Branch[]=[]
 
   constructor(private BranchService: BranchService, private route: ActivatedRoute) {
-
+      this.BranchList=this.route.snapshot.data['branchData']
   }
 
   ngOnInit() {
-    this.BranchService.setBranchList()
-    this.BranchList = this.route.snapshot.data['Branchdata']
+    // this.BranchList = this.route.snapshot.data['Branchdata']
     this.allow = this.route.snapshot.queryParams['role']
+    this.BranchService.setBranchList()
   }
   ngOnChanges(){
      this.BranchService.setBranchList()

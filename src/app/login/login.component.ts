@@ -10,16 +10,19 @@ import { User } from '../Model/User.Model';
 })
 export class LoginComponent {
   @Input() UserLogin:User
+  AllData:User[]=[]
   @ViewChild('username') username:ElementRef;
   @ViewChild('password')password:ElementRef;
   permission:any
   constructor(private loginService:LoginService,private router:Router,private route:ActivatedRoute){
+
   }
   ngOnInit(){
     this.loginService.setInfo()
   }
  allow:string;
   onLoggedIn(){
+    this.AllData=this.route.snapshot.data['userData']
   //  console.log(this.username.nativeElement.value,this.password.nativeElement.value)
    if(localStorage.getItem(this.username.nativeElement.value)){
     this.UserLogin=JSON.parse(localStorage.getItem(this.username.nativeElement.value))

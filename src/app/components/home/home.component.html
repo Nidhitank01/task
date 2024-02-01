@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-lg  bg-light ">
     <div class="container-fluid">
       <div>
-        <a class="navbar-brand" routerLink="./employee"><img src="/assets/img/logo.png" style="height: 3.5rem;" alt="brain payroll">Brain Payroll</a>
+        <a class="navbar-brand" [routerLink]="['/home',user.user]"><img src="/assets/img/logo.png" style="height: 3.5rem;" alt="brain payroll">Brain Payroll</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,11 +26,12 @@
             queryParamsHandling="merge">Branches</a>
           </li>
           
-          <li class="nav-item"><button  (click)="logout()"> <a class="nav-link"  routerLinkActive="active"> <strong>{{ user.user +" | "}} </strong>Sign out</a></button></li>
+          <li class="nav-item"><button  (click)="logout()"> <a class="nav-link"  routerLinkActive="active"> <strong>{{ user.user +" | "}} </strong>Log out</a></button></li>
         </ul>
       </div>
     </div>
   </nav>
+  
   <!--/.Navbar -->
   <router-outlet></router-outlet>
   

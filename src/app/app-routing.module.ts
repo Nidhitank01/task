@@ -6,28 +6,30 @@ import { CompanyComponent } from './components/company/company.component';
 import { BranchComponent } from './components/branch/branch.component';
 import { HomeComponent } from './components/home/home.component';
 import { SignupComponent } from './signup/signup.component';
-import { CanActivate, canActivate, resolveBranch, resolveCompany, resolveEmployee, } from './Services/auth-gaurd.service';
+import { CanActivate, canActivate, resolveBranch, resolveCompany, resolveEmployee, resolveUser, } from './Services/auth-gaurd.service';
 import { AddEmployeeComponent } from './components/employee/add-employee/add-employee.component';
 const routes: Routes = [
-  {path:'',component:LoginComponent,},
+  {path:'',component:LoginComponent,resolve:{userData:resolveUser}},
   {path:'signup',component:SignupComponent},
-  // {path:'home/:user',component:HomeComponent},
-  {path:'home/:user',component:HomeComponent,children:[
-    {path:'employee',component:EmployeeComponent,
-    data:{Permissions:["SuperAdmin","Admin","baseUser"]},
-    canActivate:[canActivate],
-    resolve:{employeeData:resolveEmployee},
-    children:[{path:'add',component:AddEmployeeComponent}]},
+  {path:'home/:user',component:HomeComponent},
+  {path:'home/:user',component:HomeComponent,
+children:[
+          {path:'employee',component:EmployeeComponent,
+          data:{Permissions:["SuperAdmin","Admin","baseUser"]},
+          canActivate:[canActivate],
+          resolve:{employeeData:resolveEmployee},
+          children:[{path:'add',component:AddEmployeeComponent}]},
+   
+          {path:'company',component:CompanyComponent,
+          data:{Permissions:["Admin","SuperAdmin"]},canActivate:[canActivate],
+        resolve:{companyData:resolveCompany}},
 
-    {path:'company',component:CompanyComponent,
-    data:{Permissions:["Admin","SuperAdmin"]},canActivate:[canActivate],
-  resolve:{companyData:resolveCompany}},
+          {path:'branches',component:BranchComponent,
+          data:{Permissions:["SuperAdmin"]},canActivate:[canActivate],
+        resolve:{branchData:resolveBranch}},   
 
-    {path:'branches',component:BranchComponent,
-    data:{Permissions:["SuperAdmin"]},canActivate:[canActivate],
-  resolve:{brancheData:resolveBranch}},   
-],canActivate:[CanActivate]},
-{path:'**',redirectTo:'/'}
+      ],canActivate:[CanActivate]},
+      {path:'**',redirectTo:'/'}
 ];
 
 @NgModule({

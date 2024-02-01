@@ -19,14 +19,6 @@ export class HomeComponent implements OnInit{
   ngOnInit(){
     this.username=this.route.snapshot.params['user'];
     this.user=JSON.parse(this.logoutService.getUserInfo(this.username))
-    // this.router.events.subscribe((routerEvent:Event)=>{
-    //   if(routerEvent instanceof NavigationStart){
-    //     this.showLoader=true;
-    //   }
-    //   if(routerEvent instanceof NavigationEnd){
-    //     this.showLoader=false;
-    //   }
-    // })
   }
   logout(){
     this.logoutService.DestroySession(this.user)
