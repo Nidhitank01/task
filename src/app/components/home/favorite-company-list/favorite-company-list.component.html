@@ -1,0 +1,20 @@
+<!-- <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Dropdown button
+    </button>
+    <ul class="dropdown-menu" *ngFor="let fav of favList">
+      <li>{{fav}}</li>
+    </ul>
+  </div> -->
+
+  
+  <p class="d-inline-flex gap-1">
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      Favorite
+    </button>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+       <div *ngFor="let fav of favList">{{ fav }}</div>
+    </div>
+  </div>

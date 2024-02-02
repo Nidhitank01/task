@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Employee } from '../Model/Employee.Model';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
   
+  addEvent=new Subject<Employee>()
+
   AllEmployee:Employee[]=[
     {
       id:1,
@@ -35,9 +37,15 @@ export class EmployeeService {
   getEmployeeList(){
     return new Observable<Employee[]>((emp)=>{
       setTimeout(()=>{
-        emp.next(JSON.parse(localStorage.getItem('EmployeeList')))
+        emp.next(this.AllEmployee)
       },1000)
     })
     // return localStorage.getItem('EmployeeList')
   }
+  
+  addEmployee(employee:Employee){
+    this.addEvent.next(employee)
+  }
+
+  
 }

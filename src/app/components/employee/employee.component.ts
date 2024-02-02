@@ -17,22 +17,32 @@ export class EmployeeComponent {
   add:boolean=false
   constructor(private router:Router ,private EmployeeService:EmployeeService,private route:ActivatedRoute){
           
-    this.EmployeeList=this.route.snapshot.data['employeeData']
+    this.allow=this.route.snapshot.queryParams['role']
     console.log(this.EmployeeList)
   }
   ngOnInit(){
-    this.allow=this.route.snapshot.queryParams['role']
-    this.EmployeeService.setEmployeeList()
+    
+    this.EmployeeList=this.route.snapshot.data['employeeData']
     // this.EmployeeList=this.EmployeeService.getEmployeeList()
+    this.EmployeeService.addEvent.subscribe((value)=>{
+      this.EmployeeList.push(value)
+      console.log(value)
+      this.add=false
+      this.router.navigate(['../employee'],{queryParams:{role:this.allow},relativeTo:this.route,queryParamsHandling:"merge"})
+      
+    })
   }
+
   ngOnChanges(){
     this.EmployeeService.setEmployeeList()
     this.EmployeeList=this.route.snapshot.data['employeeData']
    }
+
   onEdit(Id: any, BName: any) {
     
     Id.disabled = !Id.disabled;
     BName.disabled = !BName.disabled;
+  
     
   }
   onUpdate(Id:any,Bname:any){

@@ -1,4 +1,4 @@
-<div class="row float-end">
+<div class="row">
   <div class="col m-1">
   
     <div class="btn-group">
@@ -15,11 +15,13 @@
       </ul>
     </div>
   </div>
-  <div class="col m-1 float-end">
+
+  
+  <div class="col m-1 ">
     <button class="btn btn-warning" *ngIf="allow === 'SuperAdmin' || allow ==='Admin'" (click)="addEmployee()">Add</button> 
   </div>
   <div>
-    <router-outlet></router-outlet>
+    <app-add-employee *ngIf="add"></app-add-employee>
   </div>
 </div>
 
@@ -27,6 +29,7 @@
 
     <thead>
       <tr>
+        <th></th>
         <th scope="col">Id</th>
         <th scope="col">Employee Name</th>
         <th scope="col">Position</th>
@@ -37,7 +40,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let Employee of EmployeeList">
-        <th scope="row"><input type="number" [value]="Employee.id" #Id [disabled]="true"></th>
+        <td ><input type="number" [value]="Employee.id" #Id [disabled]="true"></td>
         <td><input type="text" [value]="Employee.EmployeeName" #CName [disabled]="true"></td>
         <td><input type="text" [value]="Employee.Position" #position [disabled]="true"></td>
         <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"    (click)="onEdit(Id, CName)"><button class="btn btn-primary">Edit</button></td>

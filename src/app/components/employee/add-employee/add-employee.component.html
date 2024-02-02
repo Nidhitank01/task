@@ -1,1 +1,24 @@
-<p>add-employee works!</p>
+<form class="row gx-3 gy-2 align-items-center" [formGroup]="AddEmployee" (ngSubmit)="onAdd()" #form >
+    <div class="col-sm-3">
+      <label class="visually-hidden" for="specificSizeInputId">Id</label>
+      <input type="text" class="form-control" id="specificSizeInputId" placeholder="Enter Id" formControlName="id">
+    </div>
+    <div class="col-sm-3">
+      <label class="visually-hidden" for="specificSizeInputGroupUsername">Employee name</label>
+ 
+        <input type="text" class="form-control" id="specificSizeInputGroupUsername" placeholder="Enter Employee Name" formControlName="EmployeeName">
+    
+    </div>
+    <div class="col-sm-3">
+      <label class="visually-hidden" for="specificSizeSelect">Preference</label>
+      <select class="form-select" id="specificSizeSelect" formControlName="Position">
+        <option selected>Choose Position..</option>
+        <option value="Senior" >Senior</option>
+        <option value="Junior">Junior</option>
+        <option value="New Junior">New Junior</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>

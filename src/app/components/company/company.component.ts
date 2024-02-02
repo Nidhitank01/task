@@ -56,4 +56,7 @@ export class CompanyComponent {
       this.ngOnChanges()
       console.log(this.CompanyList)
   }
+  addFav(company:Company){
+    this.CompanyService.addToFav(company)
+  }
 }

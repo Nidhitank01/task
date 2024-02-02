@@ -8,8 +8,9 @@ import { HomeComponent } from './components/home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import { CanActivate, canActivate, resolveBranch, resolveCompany, resolveEmployee, resolveUser, } from './Services/auth-gaurd.service';
 import { AddEmployeeComponent } from './components/employee/add-employee/add-employee.component';
+import { FavoriteCompanyListComponent } from './components/home/favorite-company-list/favorite-company-list.component';
 const routes: Routes = [
-  {path:'',component:LoginComponent,resolve:{userData:resolveUser}},
+  {path:'',component:LoginComponent},
   {path:'signup',component:SignupComponent},
   {path:'home/:user',component:HomeComponent},
   {path:'home/:user',component:HomeComponent,

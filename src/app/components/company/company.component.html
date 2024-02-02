@@ -2,6 +2,7 @@
 <table class="table table-bordered m-1">
     <thead>
       <tr>
+        <th></th>
         <th scope="col">Id</th>
         <th scope="col">Company Name</th>
         <th></th>
@@ -11,6 +12,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let company of CompanyList">
+        <td scope="row"><button class="btn" (click)="addFav(company)" ><i class="far fa-star"></i></button></td>
         <td scope="row"><input type="number" [value]="company.id" #Id [disabled]="true"></td>
         <td><input type="text" [value]="company.CompanyName" #CName [disabled]="true"></td>
         <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"    (click)="onEdit(Id, CName)"><button class="btn btn-primary">Edit</button></td>
