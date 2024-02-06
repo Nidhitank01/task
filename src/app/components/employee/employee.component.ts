@@ -15,44 +15,49 @@ export class EmployeeComponent {
   EmployeeList:Employee[]=[]
   permission:any
   add:boolean=false
-  constructor(private router:Router ,private EmployeeService:EmployeeService,private route:ActivatedRoute){
-          
+  sortBy:string
+  bgcolor:string
+  constructor(private router:Router ,private EmployeeService:EmployeeService,private route:ActivatedRoute){    
     this.allow=this.route.snapshot.queryParams['role']
     console.log(this.EmployeeList)
   }
+
   ngOnInit(){
     
     this.EmployeeList=this.route.snapshot.data['employeeData']
-    // this.EmployeeList=this.EmployeeService.getEmployeeList()
-    this.EmployeeService.addEvent.subscribe((value)=>{
-      this.EmployeeList.push(value)
-      console.log(value)
-      this.add=false
-      this.router.navigate(['../employee'],{queryParams:{role:this.allow},relativeTo:this.route,queryParamsHandling:"merge"})
-      
-    })
+    console.log(this.EmployeeList)
   }
 
   ngOnChanges(){
+
     this.EmployeeService.setEmployeeList()
     this.EmployeeList=this.route.snapshot.data['employeeData']
+    this.sortBy=this.route.snapshot.queryParams['sortBy']
+    console.log(this.sortBy)
    }
 
-  onEdit(Id: any, BName: any) {
+  onEdit(Id: any, EName: any,position:any,companyName:any,branchName:any,gender:any,bdate:any) {
     
-    Id.disabled = !Id.disabled;
-    BName.disabled = !BName.disabled;
-  
+     Id.disabled = !Id.disabled;
+     EName.disabled = !EName.disabled;
+     position.disabled=!position.disabled;
+     companyName.disabled=!companyName.disabled;
+     branchName.disabled=!branchName.disabled
+     gender.disabled=!gender.disabled;
+     bdate.disabled=!bdate.disabled
     
   }
-  onUpdate(Id:any,Bname:any){
+  onUpdate(Id:any,Ename:any,position:any,companyName:any,branchName:any,gender:any,bdate:any){
     this.EmployeeService.AllEmployee.find((i)=>{
-  
       if(i.id===parseInt(Id.value)){
-        i.EmployeeName=Bname.value
+        i.EmployeeName=Ename.value
         Id.disabled = !Id.disabled;
-        Bname.disabled = !Bname.disabled;
-        this.ngOnChanges()
+        Ename.disabled = !Ename.disabled;
+        position.disabled=!position.disabled;
+        companyName.disabled=!companyName.disabled;
+        branchName.disabled=!branchName.disabled
+        gender.disabled=!gender.disabled;
+        bdate.disabled=!bdate.disabled
       }
     })
     console.log(this.EmployeeList)
@@ -71,8 +76,23 @@ export class EmployeeComponent {
       console.log(this.EmployeeList)
   
 }
-addEmployee(){
- this.add=true
- this.router.navigate(['./add',],{relativeTo:this.route})
+
+// addEmployee(){
+//  this.add=!this.add
+//  if(this.add){
+//    this.router.navigate(['./add',],{relativeTo:this.route,queryParamsHandling:"merge"})
+//  }
+// }
+
+ sort(sortBy:string){
+  this.EmployeeList.filter((emp,index)=>{
+    if(emp.Position===sortBy){
+       this.EmployeeList.unshift(emp)
+       this.EmployeeList.splice(index+1,1)
+    }
+    else if(sortBy==='reset'){
+      this.EmployeeList.sort((a,b)=>{return a.id-b.id})
+    }
+  })
 }
 }

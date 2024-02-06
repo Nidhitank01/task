@@ -10,11 +10,17 @@ export class FavoriteCompanyListComponent implements OnInit {
 
 favList:string[]=[]
  constructor(private companyService:CompanyService){
+  this.favList=this.companyService.favorite
   console.log('fav')
  }
  ngOnInit(){
   this.companyService.addfavorite.subscribe((value)=>{
-    this.favList.push(value.CompanyName)
+    if(!this.favList.includes(value.CompanyName)){
+      this.companyService.favorite.push(value.CompanyName)
+    }
+    else{
+      alert('already in favorite')
+    }
     console.log("fav:",this.favList)
  })
  }

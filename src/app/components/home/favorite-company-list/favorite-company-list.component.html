@@ -7,14 +7,18 @@
     </ul>
   </div> -->
 
-  
-  <p class="d-inline-flex gap-1">
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-      Favorite
-    </button>
-  </p>
-  <div class="collapse" id="collapseExample">
-    <div class="card card-body">
-       <div *ngFor="let fav of favList">{{ fav }}</div>
+  <div class="nav-item" style="margin-top: 1rem; display: flex; margin-left: 50rem; " >
+    <div style="justify-content: flex-end;">
+    <p class="d-inline-flex gap-1" style="z-index: 2;">
+      <button class="btn text-light"  style="background-color: rgb(235, 110, 170);" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <i class="fas fa-star"></i>  Favorite
+      </button>
+    </p>
+    <div class="collapse" id="collapseExample" *ngIf="favList.length!==0">
+      <div class="card card-body" *ngIf="favList.length!==0" >
+         <div *ngFor="let fav of favList let i=index"><a routerLink="./companyDetail" class="nav-link text-dark">{{ i+1+" | "+fav }}</a></div>
+      </div>
     </div>
   </div>
+  </div>
+ 

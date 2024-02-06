@@ -15,12 +15,13 @@ const routes: Routes = [
   {path:'home/:user',component:HomeComponent},
   {path:'home/:user',component:HomeComponent,
 children:[
-          {path:'employee',component:EmployeeComponent,
+          {path:'employee',component:EmployeeComponent,pathMatch:'full',
           data:{Permissions:["SuperAdmin","Admin","baseUser"]},
           canActivate:[canActivate],
           resolve:{employeeData:resolveEmployee},
-          children:[{path:'add',component:AddEmployeeComponent}]},
-   
+          // children:[{path:'add',component:AddEmployeeComponent,}]
+        },
+         {path:'employee/add',component:AddEmployeeComponent},
           {path:'company',component:CompanyComponent,
           data:{Permissions:["Admin","SuperAdmin"]},canActivate:[canActivate],
         resolve:{companyData:resolveCompany}},

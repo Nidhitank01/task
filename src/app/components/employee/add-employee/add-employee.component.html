@@ -1,7 +1,7 @@
-<form class="row gx-3 gy-2 align-items-center" [formGroup]="AddEmployee" (ngSubmit)="onAdd()" #form >
+<!-- <form class="row gx-3 gy-2 align-items-center" [formGroup]="AddEmployee" (ngSubmit)="onAdd()" #form >
     <div class="col-sm-3">
       <label class="visually-hidden" for="specificSizeInputId">Id</label>
-      <input type="text" class="form-control" id="specificSizeInputId" placeholder="Enter Id" formControlName="id">
+      <input type="text" class="form-control" id="specificSizeInputId" placeholder="Enter Id" formControlName="id" >
     </div>
     <div class="col-sm-3">
       <label class="visually-hidden" for="specificSizeInputGroupUsername">Employee name</label>
@@ -11,14 +11,75 @@
     </div>
     <div class="col-sm-3">
       <label class="visually-hidden" for="specificSizeSelect">Preference</label>
-      <select class="form-select" id="specificSizeSelect" formControlName="Position">
+      <select class="form-select" id="specificSizeSelect" formControlName="Position" >
         <option selected>Choose Position..</option>
-        <option value="Senior" >Senior</option>
-        <option value="Junior">Junior</option>
-        <option value="New Junior">New Junior</option>
+        <option value="senior" >Senior</option>
+        <option value="junior">Junior</option>
+        <option value="New Joinee">New Joinee</option>
       </select>
     </div>
     <div class="col-auto">
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-  </form>
+  </form> -->
+
+  <!-- Add Employee Form -->
+<form class="text-center border border-light p-5 shadow  mb-5 bg-body rounded mx-auto mt-5" 
+style="width:50rem; background-color: rgb(0, 0, 0);"
+[formGroup]="AddEmployee" (ngSubmit)="onAdd()">
+
+  <p class="h3 mb-4">Employee Details</p>
+
+  <!-- Name -->
+  <input type="text" 
+  id="defaultContactFormName" class="form-control mb-4" 
+  placeholder="Enter Employee Name"
+  formControlName="EmployeeName">
+
+  
+  <!--Comapny in which he/she work -->
+  <input type="text"
+   id="defaultContactFormEmail" class="form-control mb-4" 
+   placeholder="Enter Company Name"
+   formControlName="CompanyName">
+  
+  <!-- Branch Name in which he.she is -->
+  <input type="text" 
+  id="defaultContactFormEmail" class="form-control mb-4" 
+  placeholder="Enter Branch Name"
+  formControlName="BranchName">
+  <!-- Gender -->
+  <div class="custom-control custom-radio mb-4">
+    <div class="d-flex float-left" >
+      <input type="radio" class="custom-control-input  m-1" id="male" name="Gender" value="Male" formControlName="Gender">
+      <label class="custom-control-label p-1" for="male">Male</label>
+      <input type="radio" class="custom-control-input  m-1" id="female" name="Gender" checked value="Female" formControlName="Gender">
+      <label class="custom-control-label  p-1" for="female">Female</label>
+    </div>
+  </div>
+  <!-- Select Position ---->
+  <div>
+    <div class="d-flex float-left">
+          <select class="browser-default custom-select mb-4 p-2" style="width: 45rem;" formControlName="Position">
+              <option value="" disabled selected >Select Position</option>
+              <option value="junior">junior</option>
+              <option value="senior">senior</option>
+              <option value="new Joinee">new Joinee</option>
+              <option value="leaved">leaved</option>
+          </select>
+        </div>
+  </div>
+
+
+ 
+  <div class="custom-control custom-date mb-4" >
+    <div class="d-flex float-left ">
+      <input type="date" placeholder="Enter Birth Date" formControlName="BirthDate">
+    </div>
+  </div>
+
+  <!-- Send button -->
+  <button class="btn btn-info btn-block text-light" type="submit" style="width: 44rem; font-size: 1.2rem;">Add Employee</button>
+
+</form>
+<!-- Default form contact -->

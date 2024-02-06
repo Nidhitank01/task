@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 export class CompanyService {
  
   favorite:string[]=[]
-  addfavorite=new BehaviorSubject<Company>({id:0,CompanyName:''})
+  addfavorite=new Subject<Company>()
   AllCompany:Company[]=[
     {
       id:1,

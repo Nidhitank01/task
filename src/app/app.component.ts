@@ -6,7 +6,7 @@ import { Router,RouterEvent,Event, NavigationStart, NavigationEnd, NavigationCan
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Task1';
   showLoader: boolean = false;
  constructor(private router:Router){}
@@ -18,10 +18,11 @@ export class AppComponent {
         if(routerEvent instanceof NavigationStart){
           this.showLoader=true;
         }
-        if(routerEvent instanceof NavigationEnd || routerEvent instanceof NavigationCancel
-          || routerEvent instanceof NavigationError){
+        if(routerEvent instanceof NavigationEnd){
           this.showLoader=false
         }
       })
   }
 }
+// || routerEvent instanceof NavigationCancel
+// || routerEvent instanceof NavigationError
