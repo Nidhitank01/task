@@ -18,11 +18,10 @@ export class AppComponent implements OnInit {
         if(routerEvent instanceof NavigationStart){
           this.showLoader=true;
         }
-        if(routerEvent instanceof NavigationEnd){
+        if(routerEvent instanceof NavigationEnd || routerEvent instanceof NavigationCancel
+          || routerEvent instanceof NavigationError){
           this.showLoader=false
         }
       })
   }
 }
-// || routerEvent instanceof NavigationCancel
-// || routerEvent instanceof NavigationError

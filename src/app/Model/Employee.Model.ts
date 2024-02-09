@@ -5,5 +5,5 @@ export class Employee{
     BranchName:string=null
     Position:string=null
     Gender:string=null
-    BirthDate:string=null
+    BirthDate:Date=new Date(1,6,2000)
 }

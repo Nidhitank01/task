@@ -14,8 +14,13 @@ import { SignupComponent } from './signup/signup.component';
 import { AddEmployeeComponent } from './components/employee/add-employee/add-employee.component';
 import { EmployeeService } from './Services/employee.service';
 import { FavoriteCompanyListComponent } from './components/home/favorite-company-list/favorite-company-list.component';
+import { CompanyService } from './Services/company.service';
+import { BranchService } from './Services/branch.service';
+import { LoginService } from './Services/login.service';
+import { SearchPipe } from './pipes/search.pipe';
 
-
+import { SubBarComponent } from './components/sub-bar/sub-bar.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
@@ -29,9 +34,10 @@ import { FavoriteCompanyListComponent } from './components/home/favorite-company
     SignupComponent,
     AddEmployeeComponent,
     FavoriteCompanyListComponent,
+    SearchPipe,
 
-   
-   
+    SubBarComponent,
+     FilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +47,7 @@ import { FavoriteCompanyListComponent } from './components/home/favorite-company
    ReactiveFormsModule
 
   ],
-  providers: [],
+  providers: [EmployeeService,CompanyService,BranchService,LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

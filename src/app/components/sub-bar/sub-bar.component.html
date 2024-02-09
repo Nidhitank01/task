@@ -1,0 +1,31 @@
+<div class="row" style="display: flex; justify-content: flex-end; background-color: azure;">
+    <!-- filter functionality -->
+    <div class="col-1" style="margin:1rem 3rem">
+        <!-- Search form -->
+        <form class="form-inline d-flex active-cyan-2">
+            <input class="form-control" type="text" placeholder="Search"
+            aria-label="Search" style="width: 10rem;" [(ngModel)]="Search" name="Search">
+            <i class="fas fa-search" aria-hidden="true" style="margin: auto; padding-left: 0.5rem;"></i>
+          </form>
+        </div>
+            <div class="col-1 m-2">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default" 
+                data-bs-toggle="dropdown"  aria-expanded="false"
+                style="font-size: 1.2rem; font-weight: 500;" >Filter <i class="bi bi-funnel-fill"></i></button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" (click)="sort('junior')">Junior</a></li>
+                  <li><a class="dropdown-item" (click)="sort('senior')" >Senior</a></li>
+                  <li><a class="dropdown-item" (click)="sort('new joinee')" >New Joinee</a></li>
+                  <li><a class="dropdown-item" (click)="sort('reset')">Reset</a></li>
+                </ul>
+              </div>
+          
+            </div>
+    <!-- add employee functionality -->
+            <div class="col-1">
+              <div class="d-flex float-right">
+                <a  class="text-decoration-none text-black p-3 h5" *ngIf="allow === 'SuperAdmin' || allow ==='Admin'" routerLink="./add" queryParamsHandling="merge" >Add +</a>
+              </div>
+            </div>
+</div>

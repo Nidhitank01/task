@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Company } from 'src/app/Model/Company.Model';
 import { CompanyService } from 'src/app/Services/company.service';
 
 @Component({
@@ -8,15 +9,15 @@ import { CompanyService } from 'src/app/Services/company.service';
 })
 export class FavoriteCompanyListComponent implements OnInit {
 
-favList:string[]=[]
+favList:Company[]=[]
  constructor(private companyService:CompanyService){
   this.favList=this.companyService.favorite
   console.log('fav')
  }
  ngOnInit(){
   this.companyService.addfavorite.subscribe((value)=>{
-    if(!this.favList.includes(value.CompanyName)){
-      this.companyService.favorite.push(value.CompanyName)
+    if(!this.favList.includes(value)){
+      this.companyService.favorite.push(value)
     }
     else{
       alert('already in favorite')

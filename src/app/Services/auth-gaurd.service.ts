@@ -6,6 +6,7 @@ import { CompanyService } from "./company.service"
 import { BranchService } from "./branch.service"
 import { Employee } from "../Model/Employee.Model"
 
+
 export const CanActivate: CanActivateFn = () => {
   const LService = inject(LoginService)
   const RSerivce = inject(Router)
@@ -42,36 +43,8 @@ export const canActivate: CanActivateFn = (
     return false
   }
 }
-
-
-// export const canDeactivate = () => {
-//   const eService = inject(EmployeeService)
-//   let formData: Employee
-//   if (!eService.isSubmit) {
-//         if (confirm('do you want to save changes!')) {
-//           // debugger
-//           eService.AddEmployeeFormFilled.subscribe(value => {
-//             // debugger
-//             console.log(value)
-//             return true
-//           })
-//         }
-//         else {
-//           return false
-//         }
-//         return true
-//       }
-
-//   else{
-//     return false
-//   }
-// }
-
-
-
 export const resolveEmployee = () => {
   const eService = inject(EmployeeService)
-  debugger
   return eService.getEmployeeList()
 }
 export const resolveCompany = () => {

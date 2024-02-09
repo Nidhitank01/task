@@ -1,29 +1,6 @@
-<div class="row" style="display: flex; justify-content: flex-end; background-color: azure;">
-<!-- filter functionality -->
-        <div class="col-1 m-2">
-          <div class="btn-group">
-            <button type="button" class="btn btn-default" 
-            data-bs-toggle="dropdown"  aria-expanded="false"
-            style="font-size: 1.2rem; font-weight: 500;" >Filter <i class="bi bi-funnel-fill"></i></button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" (click)="sort('junior')">Junior</a></li>
-              <li><a class="dropdown-item" (click)="sort('senior')" >Senior</a></li>
-              <li><a class="dropdown-item" (click)="sort('new joinee')" >New Joinee</a></li>
-              <li><a class="dropdown-item" (click)="sort('reset')">Reset</a></li>
-            </ul>
-          </div>
-      
-        </div>
-<!-- add employee functionality -->
-        <div class="col-1">
-          <div class="d-flex float-right">
-            <a  class="text-decoration-none text-black p-3 h5" *ngIf="allow === 'SuperAdmin' || allow ==='Admin'" routerLink="./add" queryParamsHandling="merge" >Add +</a>
-          </div>
-        </div>
 
-</div>
+
 <table class="table table-bordered " style="float: right;">
-  
   <thead>
     <tr>
       <th scope="col">Id</th>
@@ -39,15 +16,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let Employee of EmployeeList" [style.backgrondColor]="bgcolor">
+    <tr *ngFor="let Employee of EmployeeList|search:searchFor |filter:searchFor " [style.backgrondColor]="bgcolor">
       <td ><input type="number" [value]="Employee.id" #Id [disabled]="true"></td>
       <td><input type="text" [value]="Employee.EmployeeName" #EName [disabled]="true"></td>
       <td><input type="text" [value]="Employee.CompanyName" #CompanyName [disabled]="true"></td>
       <td><input type="text" [value]="Employee.BranchName" #BranchName [disabled]="true"></td>
       <td><input type="text" [value]="Employee.Position" #position [disabled]="true"></td>
       <td><input type="text" [value]="Employee.Gender" #Gender [disabled]="true"></td>
-      <td><input type="text"  [value]="Employee.BirthDate" #BDate [disabled]="true"></td>
-      <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"    (click)="onEdit(Id, EName,position,CompanyName,BranchName,Gender,BDate)"><button class="btn btn-primary">Edit</button></td>
+      <td><input [type]="type"  [value]="Employee.BirthDate |date" #BDate [disabled]="true"></td>
+      <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"    (click)="onEdit(Id, EName,position,CompanyName,BranchName,Gender,BDate)" #edit><button class="btn btn-primary">Edit</button></td>
       <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"><button class="btn btn-success"
         (click)="onUpdate(Id, EName,position,CompanyName,BranchName,Gender,BDate)">Save</button></td>
         <td *ngIf="allow === 'SuperAdmin'"  (click)="onDelete(Employee)"><button class="btn btn-danger" [disabled]="!Id.disabled">Delete</button></td>

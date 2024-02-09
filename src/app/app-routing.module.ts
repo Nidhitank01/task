@@ -15,6 +15,7 @@ const routes: Routes = [
   {path:'home/:user',component:HomeComponent},
   {path:'home/:user',component:HomeComponent,
 children:[
+         {path:'favList',component:FavoriteCompanyListComponent},
           {path:'employee',component:EmployeeComponent,pathMatch:'full',
           data:{Permissions:["SuperAdmin","Admin","baseUser"]},
           canActivate:[canActivate],

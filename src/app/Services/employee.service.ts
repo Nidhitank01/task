@@ -6,10 +6,9 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 })
 export class EmployeeService {
   
+  EmployeeListChanged=new Subject<Employee[]>()
   addEvent=new Subject<Employee>()
-  // {id:null,EmployeeName:null,CompanyName:null,BranchName:null,Position:null,Gender:null,BirthDate:new Date()}
-  // AddEmployeeFormFilled=new BehaviorSubject<Employee>({id:null,EmployeeName:null,Position:null,})
-  // isSubmit:boolean=false
+  searchEmployee=new Subject<string>()
   AllEmployee:Employee[]=[
     {
       id:1,
@@ -18,7 +17,7 @@ export class EmployeeService {
       BranchName:'Ahemdabad',
       Position:'senior',
       Gender:'Female',
-      BirthDate:'2004-01-19'
+      BirthDate:new Date("2004-01-19")
 
     },
     {
@@ -28,7 +27,7 @@ export class EmployeeService {
       BranchName:'Surat',
       Position:'junior',
       Gender:'Female',
-      BirthDate:'2001-07-26'
+      BirthDate:new Date("2002-07-26")
     },
     {
       id:3,
@@ -37,7 +36,7 @@ export class EmployeeService {
       BranchName:'Ahemdabad',
       Position:'new joinee',
       Gender:'Male',
-      BirthDate:'2003-07-09'
+      BirthDate:new Date("2003-07-09")
 
     },
     {
@@ -47,7 +46,7 @@ export class EmployeeService {
       BranchName:'Surat',
       Position:'junior',
       Gender:'Male',
-      BirthDate:'2002-05-25'
+      BirthDate:new Date()
     }
   ]
   constructor() { }
@@ -59,18 +58,21 @@ export class EmployeeService {
 
   getEmployeeList(){
     return new Observable<Employee[]>((emp)=>{
-      debugger
       setTimeout(()=>{
         emp.next(this.AllEmployee)
       },1000)
     })
-    // return localStorage.getItem('EmployeeList')
   }
   
   addEmployee(employee:Employee){
      this.AllEmployee.push(employee)
+     localStorage.setItem('EmployeeList',JSON.stringify(this.AllEmployee))
      console.log(this.AllEmployee)
   }
 
+  sorting(sortBy:string){
   
+    this.searchEmployee.next(sortBy)
+     
+  }
 }
