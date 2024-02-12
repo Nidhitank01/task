@@ -11,16 +11,17 @@ import { CompanyComponent } from './components/company/company.component';
 import { BranchComponent } from './components/branch/branch.component';
 import { HomeComponent } from './components/home/home.component';
 import { SignupComponent } from './signup/signup.component';
-import { AddEmployeeComponent } from './components/employee/add-employee/add-employee.component';
+import { AddComponent } from './components/add/add.component';
 import { EmployeeService } from './Services/employee.service';
 import { FavoriteCompanyListComponent } from './components/home/favorite-company-list/favorite-company-list.component';
 import { CompanyService } from './Services/company.service';
 import { BranchService } from './Services/branch.service';
 import { LoginService } from './Services/login.service';
 import { SearchPipe } from './pipes/search.pipe';
-
+import { HttpClientModule } from '@angular/common/http';
 import { SubBarComponent } from './components/sub-bar/sub-bar.component';
 import { FilterPipe } from './pipes/filter.pipe';
+
 
 
 @NgModule({
@@ -32,19 +33,20 @@ import { FilterPipe } from './pipes/filter.pipe';
     BranchComponent,
     HomeComponent,
     SignupComponent,
-    AddEmployeeComponent,
+    AddComponent,
     FavoriteCompanyListComponent,
     SearchPipe,
-
     SubBarComponent,
      FilterPipe,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
    FormsModule,
    AppRoutingModule,
-   ReactiveFormsModule
+   ReactiveFormsModule,
+   HttpClientModule
 
   ],
   providers: [EmployeeService,CompanyService,BranchService,LoginService],

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,RouterEvent,Event, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import { filter } from 'lodash';
 
 @Component({
   selector: 'app-root',

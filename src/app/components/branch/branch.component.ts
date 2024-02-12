@@ -60,4 +60,6 @@ export class BranchComponent implements OnInit,OnChanges {
       this.ngOnChanges()
       console.log(this.BranchList)
   }
+
+  
 }

@@ -1,11 +1,15 @@
-import { inject } from "@angular/core"
+import { Inject, inject } from "@angular/core"
 import { LoginService } from "./login.service"
 import { ActivatedRoute, ActivatedRouteSnapshot, CanActivateFn,  Router } from "@angular/router"
 import { EmployeeService } from "./employee.service"
 import { CompanyService } from "./company.service"
 import { BranchService } from "./branch.service"
 import { Employee } from "../Model/Employee.Model"
+import { BehaviorSubject, map } from "rxjs"
+import { HttpClient } from "@angular/common/http"
 
+
+export const routeChanged=new BehaviorSubject<string>('')
 
 export const CanActivate: CanActivateFn = () => {
   const LService = inject(LoginService)
@@ -45,14 +49,21 @@ export const canActivate: CanActivateFn = (
 }
 export const resolveEmployee = () => {
   const eService = inject(EmployeeService)
-  return eService.getEmployeeList()
+  const http=inject(HttpClient)
+  routeChanged.next('employee')
+  http.get<Employee[]>('http://localhost:3000/AllEmployee').pipe(map(data=>{
+    return Object.keys(data).map(key=> ({...data[key]}))
+  }))
+  // return eService.getEmployeeList()
 }
 export const resolveCompany = () => {
   const cService = inject(CompanyService)
+  routeChanged.next('company')
   return cService.getCompanyList()
 }
 export const resolveBranch = () => {
   const bService = inject(BranchService)
+  routeChanged.next('branches')
   return bService.getBranchList()
 }
 export const resolveUser = () => {

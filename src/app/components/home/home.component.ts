@@ -1,5 +1,6 @@
-import { Component, OnInit,OnDestroy, Input, Output, DoCheck } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, NavigationStart, Router, RouterEvent } from '@angular/router';
+import { Component, OnInit,OnDestroy } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import { filter ,map} from 'lodash';
 import { Employee } from 'src/app/Model/Employee.Model';
 import { User } from 'src/app/Model/User.Model';
 import { CompanyService } from 'src/app/Services/company.service';
@@ -17,13 +18,14 @@ export class HomeComponent implements OnInit{
   permission:any
   showLoader:boolean=false
   EmployeeList:Employee[]
+  currentRoute:any
   constructor(private router:Router,private logoutService:LoginService,private route:ActivatedRoute,private companyService:CompanyService,private EmployeeService:EmployeeService){
     this.EmployeeList=EmployeeService.AllEmployee
   }
   ngOnInit(){
     this.username=this.route.snapshot.params['user'];
     this.user=JSON.parse(this.logoutService.getUserInfo(this.username))
-  
+
   }
 
   

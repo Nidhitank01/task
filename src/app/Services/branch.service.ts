@@ -34,5 +34,10 @@ export class BranchService {
       },1000)
     })
 }
+addBranch(branch:Branch){
+  
+  this.AllBranch.push(branch)
+  this.setBranchList()
+}
 }
 

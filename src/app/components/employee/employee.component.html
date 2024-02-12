@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let Employee of EmployeeList|search:searchFor |filter:searchFor " [style.backgrondColor]="bgcolor">
+    <tr *ngFor="let Employee of EmployeeList|search:searchFor |filter:sortBy" [style.backgrondColor]="bgcolor">
       <td ><input type="number" [value]="Employee.id" #Id [disabled]="true"></td>
       <td><input type="text" [value]="Employee.EmployeeName" #EName [disabled]="true"></td>
       <td><input type="text" [value]="Employee.CompanyName" #CompanyName [disabled]="true"></td>

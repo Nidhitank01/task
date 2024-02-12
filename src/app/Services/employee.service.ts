@@ -7,8 +7,12 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 export class EmployeeService {
   
   EmployeeListChanged=new Subject<Employee[]>()
+  
   addEvent=new Subject<Employee>()
+
   searchEmployee=new Subject<string>()
+  sortEmployee=new Subject<string>()
+
   AllEmployee:Employee[]=[
     {
       id:1,
@@ -49,7 +53,9 @@ export class EmployeeService {
       BirthDate:new Date()
     }
   ]
-  constructor() { }
+  constructor() {
+
+   }
 
 
   setEmployeeList(){
@@ -70,9 +76,4 @@ export class EmployeeService {
      console.log(this.AllEmployee)
   }
 
-  sorting(sortBy:string){
-  
-    this.searchEmployee.next(sortBy)
-     
-  }
 }

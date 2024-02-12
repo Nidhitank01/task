@@ -33,19 +33,22 @@ export class EmployeeComponent implements OnInit,OnChanges,DoCheck {
       this.EmployeeList=value
     })
     this.EmployeeList=this.route.snapshot.data['employeeData'] 
+    
+    this.EmployeeService.sortEmployee.subscribe((value)=>{
+      this.sortBy=value
+    })
   }
+
   ngOnChanges(){
     this.EmployeeService.setEmployeeList()
     this.EmployeeList=this.route.snapshot.data['employeeData']
-    this.sortBy=this.route.snapshot.queryParams['sortBy']
-    console.log(this.sortBy)
    }
-   
+
   ngDoCheck(){
     this.EmployeeService.searchEmployee.subscribe((value)=>{
       this.searchFor=value
-      console.log(this.searchFor)
    }) 
+  
   }
 
   onEdit(Id: any, EName: any,position:any,companyName:any,branchName:any,gender:any,bdate:any) {

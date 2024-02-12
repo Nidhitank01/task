@@ -1,0 +1,52 @@
+{
+  
+ "AllEmployee":[
+    {
+      "id": 1,
+      "EmployeeName": "Nidhi",
+      "CompanyName": "BTL",
+      "BranchName": "Ahemdabad",
+      "Position": "senior",
+      "Gender": "Female",
+      "BirthDate": "2004-01-19T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "EmployeeName": "Priyanka",
+      "CompanyName": "BlueDrawfTech",
+      "BranchName": "Surat",
+      "Position": "junior",
+      "Gender": "Female",
+      "BirthDate": "2002-07-26T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "EmployeeName": "Ronak",
+      "CompanyName": "Braintech labs",
+      "BranchName": "Ahemdabad",
+      "Position": "new joinee",
+      "Gender": "Male",
+      "BirthDate": "2003-07-09T00:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "EmployeeName": "Urvish",
+      "CompanyName": "BTL",
+      "BranchName": "Surat",
+      "Position": "junior",
+      "Gender": "Male",
+      "BirthDate": "2024-02-12T12:43:56.211Z"
+    }
+  ],
+  
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

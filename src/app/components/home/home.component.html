@@ -11,18 +11,18 @@
       <div class="collapse navbar-collapse d-flex " style="padding-right: 10rem; "  id="navbarNavDropdown">
         <div  style="justify-content: flex-start;">
           <ul class="navbar-nav float-start">
-            <li class="nav-item"  routerLinkActive="active"  >
+            <li class="nav-item"  routerLinkActive="active"  [routerLinkActiveOptions]="{exact:true}">
               <a class="nav-link active" aria-current="page"
               routerLink="./employee"
               queryParamsHandling="merge"
               >Employee</a>
             </li>
-            <li class="nav-item"  routerLinkActive="active"  >
+            <li class="nav-item"  routerLinkActive="active"   [routerLinkActiveOptions]="{exact:true}">
               <a class="nav-link"
               routerLink="./company"
               queryParamsHandling="merge">Company</a>
             </li>
-            <li class="nav-item"  routerLinkActive="active"  >
+            <li class="nav-item"  routerLinkActive="active"  [routerLinkActiveOptions]="{exact:true}" >
               <a class="nav-link" routerLink="./branches"
               queryParamsHandling="merge">Branches</a>
             </li>

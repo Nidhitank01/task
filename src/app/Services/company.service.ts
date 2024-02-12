@@ -33,6 +33,11 @@ export class CompanyService {
       },1000)
     })
 }
+addCompany(company:Company){
+  this.AllCompany.push(company)
+  this.setCompanyList()
+}
+
 addToFav(company:Company){
   this.addfavorite.next(company)
 }

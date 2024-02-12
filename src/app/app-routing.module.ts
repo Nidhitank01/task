@@ -7,31 +7,36 @@ import { BranchComponent } from './components/branch/branch.component';
 import { HomeComponent } from './components/home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import { CanActivate, canActivate, resolveBranch, resolveCompany, resolveEmployee, resolveUser, } from './Services/auth-gaurd.service';
-import { AddEmployeeComponent } from './components/employee/add-employee/add-employee.component';
+import { AddComponent } from './components/add/add.component';
 import { FavoriteCompanyListComponent } from './components/home/favorite-company-list/favorite-company-list.component';
 const routes: Routes = [
   {path:'',component:LoginComponent},
   {path:'signup',component:SignupComponent},
   {path:'home/:user',component:HomeComponent},
   {path:'home/:user',component:HomeComponent,
-children:[
-         {path:'favList',component:FavoriteCompanyListComponent},
-          {path:'employee',component:EmployeeComponent,pathMatch:'full',
-          data:{Permissions:["SuperAdmin","Admin","baseUser"]},
-          canActivate:[canActivate],
-          resolve:{employeeData:resolveEmployee},
-          // children:[{path:'add',component:AddEmployeeComponent,}]
-        },
-         {path:'employee/add',component:AddEmployeeComponent},
-          {path:'company',component:CompanyComponent,
-          data:{Permissions:["Admin","SuperAdmin"]},canActivate:[canActivate],
-        resolve:{companyData:resolveCompany}},
+          children:[
+                  {path:'favList',component:FavoriteCompanyListComponent},
+                    {path:'employee',component:EmployeeComponent,pathMatch:'full',
+                    data:{Permissions:["SuperAdmin","Admin","baseUser"],route:'employee'},
+                    canActivate:[canActivate],
+                    resolve:{employeeData:resolveEmployee},
+        
+                  },
+                  {path:'employee/add',component:AddComponent,pathMatch:'full'},
+                  {path:'company/add',component:AddComponent,pathMatch:'full'},
+                  {path:'branches/add',component:AddComponent,pathMatch:'full'},
 
-          {path:'branches',component:BranchComponent,
-          data:{Permissions:["SuperAdmin"]},canActivate:[canActivate],
-        resolve:{branchData:resolveBranch}},   
+                    {path:'company',component:CompanyComponent,pathMatch:'full',
+                    data:{Permissions:["Admin","SuperAdmin"],route:'company'},canActivate:[canActivate],
+                  resolve:{companyData:resolveCompany}},
 
-      ],canActivate:[CanActivate]},
+                    {path:'branches',component:BranchComponent,pathMatch:'full',
+                    data:{Permissions:["SuperAdmin"],route:'branches'},canActivate:[canActivate],
+                  resolve:{branchData:resolveBranch}},   
+
+                ],canActivate:[CanActivate]
+    
+    },
       {path:'**',redirectTo:'/'}
 ];
 

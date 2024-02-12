@@ -1,8 +1,9 @@
 
-  <!-- Add Employee Form -->
+<div *ngIf="whichForm==='employee'">
+    <!-- Add Employee Form -->
 <form class="text-center border border-light p-5 shadow  mb-5 bg-body rounded mx-auto mt-5" 
 style="width:50rem; background-color: rgb(0, 0, 0);"
-[formGroup]="AddEmployee" (ngSubmit)="onAdd()">
+[formGroup]="AddEmployee" (ngSubmit)="onAdd(whichForm)">
 
   <p class="h3 mb-4">Employee Details</p>
 
@@ -76,3 +77,48 @@ style="width:50rem; background-color: rgb(0, 0, 0);"
 </form>
 
 <!--  Default form contact  -->
+</div>
+
+<div *ngIf="whichForm==='company'">
+        <form class="text-center border border-light p-5 shadow  mb-5 bg-body rounded mx-auto mt-5" 
+        style="width:50rem; background-color: rgb(0, 0, 0);"
+        [formGroup]="AddCompany" (ngSubmit)="onAdd(whichForm)">
+        
+          <p class="h3 mb-4">Company Details</p>
+          
+          <!--Comapny in which he/she work -->
+          <input type="text"
+          id="defaultContactFormEmail" class="form-control mb-4" 
+          placeholder="Enter Company Name"
+          formControlName="CompanyName">
+          <div class="d-flex float-left mb-2">
+            <span *ngIf="AddCompany.get('CompanyName').touched && !AddCompany.get('CompanyName').valid">Please Enter Company Name !</span>
+          </div>
+          <!-- Send button -->
+          <button class="btn btn-info btn-block text-light" type="submit" style="width: 44rem; font-size: 1.2rem;">Add Company</button>
+          
+        </form>
+</div>
+
+<div *ngIf="whichForm==='branches'">
+  <form class="text-center border border-light p-5 shadow  mb-5 bg-body rounded mx-auto mt-5" 
+  style="width:50rem; background-color: rgb(0, 0, 0);"
+  [formGroup]="AddBranch" (ngSubmit)="onAdd(whichForm)">
+  
+    <p class="h3 mb-4">Branch Details</p>
+    
+    <!--Comapny in which he/she work -->
+    <input type="text"
+    id="defaultContactFormEmail" class="form-control mb-4" 
+    placeholder="Enter Branch Name"
+    formControlName="BranchName">
+    <div class="d-flex float-left mb-2">
+      <span *ngIf="AddCompany.get('BranchName').touched && !AddCompany.get('BranchName').valid">Please Enter Branch Name !</span>
+    </div>
+    <!-- Send button -->
+    <button class="btn btn-info btn-block text-light" type="submit" style="width: 44rem; font-size: 1.2rem;">Add Branch</button>
+    
+  </form>
+</div>
+
+

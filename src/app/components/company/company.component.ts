@@ -19,6 +19,7 @@ export class CompanyComponent {
   }
   ngOnInit(){
     this.allow=this.route.snapshot.queryParams['role']
+    console.log(this.route.snapshot.routeConfig.path)
     this.CompanyService.setCompanyList()
   }
    ngOnChanges(){
