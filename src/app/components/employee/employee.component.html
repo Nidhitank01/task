@@ -1,6 +1,6 @@
 
-
-<table class="table table-bordered " style="float: right;">
+<ng-tamplate  appForm></ng-tamplate>
+<table class="table table-bordered " style="float: right;" >
   <thead>
     <tr>
       <th scope="col">Id</th>
@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let Employee of EmployeeList|search:searchFor |filter:sortBy" [style.backgrondColor]="bgcolor">
+    <tr *ngFor="let Employee of EmployeeList|search:searchFor " [style.backgrondColor]="bgcolor">
       <td ><input type="number" [value]="Employee.id" #Id [disabled]="true"></td>
       <td><input type="text" [value]="Employee.EmployeeName" #EName [disabled]="true"></td>
       <td><input type="text" [value]="Employee.CompanyName" #CompanyName [disabled]="true"></td>
@@ -24,12 +24,11 @@
       <td><input type="text" [value]="Employee.Position" #position [disabled]="true"></td>
       <td><input type="text" [value]="Employee.Gender" #Gender [disabled]="true"></td>
       <td><input [type]="type"  [value]="Employee.BirthDate |date" #BDate [disabled]="true"></td>
-      <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"    (click)="onEdit(Id, EName,position,CompanyName,BranchName,Gender,BDate)" #edit><button class="btn btn-primary">Edit</button></td>
-      <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"><button class="btn btn-success"
-        (click)="onUpdate(Id, EName,position,CompanyName,BranchName,Gender,BDate)">Save</button></td>
-        <td *ngIf="allow === 'SuperAdmin'"  (click)="onDelete(Employee)"><button class="btn btn-danger" [disabled]="!Id.disabled">Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
-  
+      <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"    (click)="onEdit(Employee.id,Employee)" #edit><button class="btn btn-primary">Edit</button></td>
+      
+      <td *ngIf="allow === 'SuperAdmin'"  (click)="onDelete(Employee.id)"><button class="btn btn-danger" [disabled]="!Id.disabled">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+
   <router-outlet></router-outlet>

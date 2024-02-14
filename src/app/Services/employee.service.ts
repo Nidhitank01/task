@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { DoCheck, Injectable, OnInit } from '@angular/core';
 import { Employee } from '../Model/Employee.Model';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService {
+export class EmployeeService implements OnInit {
   
   EmployeeListChanged=new Subject<Employee[]>()
   
@@ -13,53 +14,23 @@ export class EmployeeService {
   searchEmployee=new Subject<string>()
   sortEmployee=new Subject<string>()
 
-  AllEmployee:Employee[]=[
-    {
-      id:1,
-      EmployeeName:'Nidhi',
-      CompanyName:'BTL',
-      BranchName:'Ahemdabad',
-      Position:'senior',
-      Gender:'Female',
-      BirthDate:new Date("2004-01-19")
-
-    },
-    {
-      id:2,
-      EmployeeName:'Priyanka',
-      CompanyName:'BlueDrawfTech',
-      BranchName:'Surat',
-      Position:'junior',
-      Gender:'Female',
-      BirthDate:new Date("2002-07-26")
-    },
-    {
-      id:3,
-      EmployeeName:'Ronak',
-      CompanyName:'Braintech labs',
-      BranchName:'Ahemdabad',
-      Position:'new joinee',
-      Gender:'Male',
-      BirthDate:new Date("2003-07-09")
-
-    },
-    {
-      id:4,
-      EmployeeName:'Urvish',
-      CompanyName:'BTL',
-      BranchName:'Surat',
-      Position:'junior',
-      Gender:'Male',
-      BirthDate:new Date()
-    }
-  ]
-  constructor() {
-
+  AllEmployee:Employee[]=[]
+  constructor(private http:HttpClient) {
+       this.http.get('http://localhost:3000/AllEmployee').subscribe((res:Employee[])=>{
+        this.AllEmployee=res
+       })
+       console.log("Employee list:",this.AllEmployee)
+   }
+   ngOnInit(){
+    this.http.get('http://localhost:3000/AllEmployee').subscribe((res:Employee[])=>{
+      this.AllEmployee=res
+     })
+     console.log("Employee list:",this.AllEmployee)
    }
 
 
   setEmployeeList(){
-    return localStorage.setItem('EmployeeList',JSON.stringify(this.AllEmployee))
+   return this.http.post('http://localhost:3000/AllEmployee',this.AllEmployee)
   }
 
   getEmployeeList(){
@@ -71,9 +42,22 @@ export class EmployeeService {
   }
   
   addEmployee(employee:Employee){
-     this.AllEmployee.push(employee)
-     localStorage.setItem('EmployeeList',JSON.stringify(this.AllEmployee))
-     console.log(this.AllEmployee)
-  }
+  
+    this.http.post('http://localhost:3000/AllEmployee',employee).subscribe()
+    this.EmployeeListChanged.next(this.AllEmployee)
+    this.getEmployeeList()
 
+ }
+
+ editEmployee(id:number,employee:Employee){
+  this.http.put( `http://localhost:3000/AllEmployee/${id}`,employee).subscribe();
+  this.getEmployeeList();
+ }
+ 
+ deleteEmployee(id:number){
+  this.http.delete(`http://localhost:3000/AllEmployee/${id}`).subscribe();
+  console.log(this.AllEmployee)
+  this.EmployeeListChanged.next(this.AllEmployee)
+  this.getEmployeeList();
+ }
 }

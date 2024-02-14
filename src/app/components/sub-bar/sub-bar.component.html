@@ -25,7 +25,8 @@
     <!-- add employee functionality -->
             <div class="col-1">
               <div class="d-flex float-right">
-                <a  class="text-decoration-none text-black p-3 h5" *ngIf="allow === 'SuperAdmin' || allow ==='Admin' " routerLink="./{{currentRoute}}/add" queryParamsHandling="merge" >Add +</a>
+                <a  class="text-decoration-none text-black p-3 h5" *ngIf="allow === 'SuperAdmin' || allow ==='Admin' " routerLink="./{{currentRoute}}" queryParamsHandling="merge" (click)="addEmployee()" >Add +</a>
               </div>
             </div>
 </div>
+<ng-template appForm></ng-template>

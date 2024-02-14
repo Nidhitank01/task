@@ -1,5 +1,5 @@
 export class Employee{
-    id:number=null;
+    id:number=null
     EmployeeName:string=null
     CompanyName:string=null
     BranchName:string=null

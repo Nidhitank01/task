@@ -1,5 +1,5 @@
 
-<div *ngIf="whichForm==='employee'">
+<div *ngIf="whichForm==='employee'" class="form">
     <!-- Add Employee Form -->
 <form class="text-center border border-light p-5 shadow  mb-5 bg-body rounded mx-auto mt-5" 
 style="width:50rem; background-color: rgb(0, 0, 0);"
@@ -11,7 +11,9 @@ style="width:50rem; background-color: rgb(0, 0, 0);"
   <input type="text" 
   id="defaultContactFormName" class="form-control mb-3" 
   placeholder="Enter Employee Name"
-  formControlName="EmployeeName">
+  formControlName="EmployeeName"
+[value]="!editEmployeeData.EmployeeName"
+ >
   <div class="d-flex float-left mb-2">
     <span *ngIf="AddEmployee.get('EmployeeName').touched && !AddEmployee.get('EmployeeName').valid">Please Enter Employee Name !</span>
   </div>
@@ -20,7 +22,8 @@ style="width:50rem; background-color: rgb(0, 0, 0);"
   <input type="text"
    id="defaultContactFormEmail" class="form-control mb-4" 
    placeholder="Enter Company Name"
-   formControlName="CompanyName">
+   formControlName="CompanyName"
+  [value]="!editEmployeeData.CompanyName">
    <div class="d-flex float-left mb-2">
     <span *ngIf="AddEmployee.get('CompanyName').touched && !AddEmployee.get('CompanyName').valid">Please Enter Company Name !</span>
   </div>
@@ -28,13 +31,15 @@ style="width:50rem; background-color: rgb(0, 0, 0);"
   <input type="text" 
   id="defaultContactFormEmail" class="form-control mb-4" 
   placeholder="Enter Branch Name"
-  formControlName="BranchName">
+  formControlName="BranchName"
+  [value]="!editEmployeeData.BranchName">
   <!-- Gender -->
   <div class="custom-control custom-radio mb-4">
     <div class="d-flex float-left" >
       <input type="radio" class="custom-control-input  m-1" id="male" name="Gender" value="Male" formControlName="Gender">
       <label class="custom-control-label p-1" for="male">Male</label>
-      <input type="radio" class="custom-control-input  m-1" id="female" name="Gender" checked value="Female" formControlName="Gender">
+      <input type="radio" class="custom-control-input  m-1" id="female" name="Gender" checked value="Female" formControlName="Gender"
+      [value]="!editEmployeeData.Gender">
       <label class="custom-control-label  p-1" for="female">Female</label>
 
       <!-- alert for valid data -->
@@ -49,7 +54,7 @@ style="width:50rem; background-color: rgb(0, 0, 0);"
     <div class="d-flex float-left">
           <select class="browser-default custom-select mb-4 p-2" style="width: 45rem;" formControlName="Position">
               <option value="" disabled selected >Select Position</option>
-              <option value="" disabled *ngIf="AddEmployee.get('Position').touched&& !AddEmployee.get('Position').valid" selected>
+              <option value="" disabled *ngIf="AddEmployee.get('Position').touched&& !AddEmployee.get('Position').valid" selected [value]="!editEmployeeData.Position">
                     Please Select Position!
               </option>
               <option value="junior">junior</option>
@@ -64,7 +69,7 @@ style="width:50rem; background-color: rgb(0, 0, 0);"
  
   <div class="custom-control custom-date d-flex mb-4" >
     <div class="d-flex float-left ">
-      <input type="date" placeholder="Enter Birth Date" formControlName="BirthDate">
+      <input type="date" placeholder="Enter Birth Date" formControlName="BirthDate" [value]="!editEmployeeData.BirthDate">
     </div>
     <div class="d-flex float-right m-2">
       <span *ngIf="AddEmployee.get('BirthDate').touched && !AddEmployee.get('BirthDate').dirty">Please Enter Birth Date!</span>
@@ -72,7 +77,12 @@ style="width:50rem; background-color: rgb(0, 0, 0);"
   </div>
    
   <!-- Send button -->
-  <button class="btn btn-info btn-block text-light" type="submit" style="width: 44rem; font-size: 1.2rem;">Add Employee</button>
+  <div class="d-flex gap-3">
+
+    <button class="btn btn-danger btn-block text-light" type="button" style="width: 22rem; font-size: 1.2rem;" (click)="OnCancel()" >Cancel</button>
+    <button class="btn btn-info btn-block text-light" type="submit" style="width: 22rem; font-size: 1.2rem;">
+      {{ !this.add_edit ? 'add':'edit'}}</button>
+  </div>
   
 </form>
 
@@ -90,7 +100,7 @@ style="width:50rem; background-color: rgb(0, 0, 0);"
           <input type="text"
           id="defaultContactFormEmail" class="form-control mb-4" 
           placeholder="Enter Company Name"
-          formControlName="CompanyName">
+          formControlName="CompanyName" >
           <div class="d-flex float-left mb-2">
             <span *ngIf="AddCompany.get('CompanyName').touched && !AddCompany.get('CompanyName').valid">Please Enter Company Name !</span>
           </div>

@@ -1,44 +1,24 @@
 {
-  
- "AllEmployee":[
-    {
-      "id": 1,
-      "EmployeeName": "Nidhi",
-      "CompanyName": "BTL",
-      "BranchName": "Ahemdabad",
-      "Position": "senior",
-      "Gender": "Female",
-      "BirthDate": "2004-01-19T00:00:00.000Z"
-    },
-    {
-      "id": 2,
-      "EmployeeName": "Priyanka",
-      "CompanyName": "BlueDrawfTech",
-      "BranchName": "Surat",
-      "Position": "junior",
-      "Gender": "Female",
-      "BirthDate": "2002-07-26T00:00:00.000Z"
-    },
+  "AllEmployee": [
     {
       "id": 3,
-      "EmployeeName": "Ronak",
-      "CompanyName": "Braintech labs",
-      "BranchName": "Ahemdabad",
-      "Position": "new joinee",
+      "EmployeeName": "Dhaval Tank",
+      "CompanyName": "BTL",
+      "BranchName": "Zedra",
+      "Position": "senior",
       "Gender": "Male",
-      "BirthDate": "2003-07-09T00:00:00.000Z"
+      "BirthDate": "2024-02-05"
     },
     {
-      "id": 4,
-      "EmployeeName": "Urvish",
+      "EmployeeName": "Nidhi Tank",
       "CompanyName": "BTL",
-      "BranchName": "Surat",
+      "BranchName": "Ahemdabad",
       "Position": "junior",
-      "Gender": "Male",
-      "BirthDate": "2024-02-12T12:43:56.211Z"
+      "Gender": "Female",
+      "BirthDate": "2024-02-06",
+      "id": 4
     }
   ],
-  
   "comments": [
     {
       "id": 1,

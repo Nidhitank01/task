@@ -49,12 +49,9 @@ export const canActivate: CanActivateFn = (
 }
 export const resolveEmployee = () => {
   const eService = inject(EmployeeService)
-  const http=inject(HttpClient)
   routeChanged.next('employee')
-  http.get<Employee[]>('http://localhost:3000/AllEmployee').pipe(map(data=>{
-    return Object.keys(data).map(key=> ({...data[key]}))
-  }))
-  // return eService.getEmployeeList()
+  return eService.getEmployeeList()
+  
 }
 export const resolveCompany = () => {
   const cService = inject(CompanyService)

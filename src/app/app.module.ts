@@ -21,6 +21,7 @@ import { SearchPipe } from './pipes/search.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { SubBarComponent } from './components/sub-bar/sub-bar.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { FormDirective } from './Directives/form.directive';
 
 
 
@@ -38,6 +39,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     SearchPipe,
     SubBarComponent,
      FilterPipe,
+     FormDirective,
 
   ],
   imports: [
@@ -50,6 +52,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 
   ],
   providers: [EmployeeService,CompanyService,BranchService,LoginService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[AddComponent]
 })
 export class AppModule { }

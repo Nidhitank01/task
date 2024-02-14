@@ -11,10 +11,6 @@ export class FilterPipe implements PipeTransform {
     let  SortList:Employee[]=[]
 
     if(!sortString || sortString==='reset'){
-      value.sort((a:Employee,b:Employee)=>{
-        return (a.id)-(b.id)
-      })
-      return value
     }
     else{
 
