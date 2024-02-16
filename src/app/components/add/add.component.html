@@ -104,7 +104,13 @@ style="width:50rem; background-color: rgb(0, 0, 0);"
             <span *ngIf="AddCompany.get('CompanyName').touched && !AddCompany.get('CompanyName').valid">Please Enter Company Name !</span>
           </div>
           <!-- Send button -->
-          <button class="btn btn-info btn-block text-light" type="submit" style="width: 44rem; font-size: 1.2rem;">Add Company</button>
+          <div class="d-flex gap-3">
+
+            <button class="btn btn-danger btn-block text-light" type="button" style="width: 22rem; font-size: 1.2rem;" (click)="OnCancel()" >Cancel</button>
+            <button class="btn btn-info btn-block text-light" type="submit" style="width: 22rem; font-size: 1.2rem;">
+              {{ !this.add_edit ? 'add':'edit'}}</button>
+              
+          </div>
           
         </form>
 </div>

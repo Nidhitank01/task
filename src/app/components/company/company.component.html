@@ -1,5 +1,7 @@
-
-<table class="table table-bordered m-1">
+<div style="z-index: 50;">
+  <ng-tamplate appForm></ng-tamplate>
+</div>
+<table class="table table-bordered m-1" style="z-index: 10;">
     <thead>
       <tr>
         <th></th>
@@ -11,14 +13,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let company of CompanyList">
+      <tr *ngFor="let company of CompanyList let i=index">
         <td scope="row"><button class="btn" (click)="addFav(company)" ><i class="far fa-star"></i></button></td>
         <td scope="row"><input type="number" [value]="company.id" #Id [disabled]="true"></td>
         <td><input type="text" [value]="company.CompanyName" #CName [disabled]="true"></td>
-        <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"    (click)="onEdit(Id, CName)"><button class="btn btn-primary">Edit</button></td>
-        <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"><button class="btn btn-success"
-          (click)="onUpdate(Id, CName)">Save</button></td>
-        <td *ngIf="allow === 'SuperAdmin'"  (click)="onDelete(company)"><button class="btn btn-danger" [disabled]="!Id.disabled">Delete</button></td>
+        <td *ngIf="allow === 'SuperAdmin' || allow ==='Admin'"    (click)="onEdit(company)"><button class="btn btn-primary">Edit</button></td>
+        <td *ngIf="allow === 'SuperAdmin'"  (click)="onDelete(i+1)"><button class="btn btn-danger" [disabled]="!Id.disabled">Delete</button></td>
       </tr>
     </tbody>
   </table>

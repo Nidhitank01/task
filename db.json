@@ -64,15 +64,6 @@
       "BirthDate": "2024-02-01"
     },
     {
-      "id": 8,
-      "EmployeeName": "yuvraj",
-      "CompanyName": "Zedra",
-      "BranchName": "Ahemdabad",
-      "Position": "senior",
-      "Gender": "Male",
-      "BirthDate": "2024-02-03"
-    },
-    {
       "id": 9,
       "EmployeeName": "hello",
       "CompanyName": "BTL",
@@ -98,6 +89,24 @@
       "Position": "junior",
       "Gender": "Male",
       "BirthDate": "2024-02-03"
+    }
+  ],
+  "AllCompany": [
+    {
+      "id": 1,
+      "CompanyName": "Funnel"
+    },
+    {
+      "id": 2,
+      "CompanyName": "Brain Payroll"
+    },
+    {
+      "id": 3,
+      "CompanyName": "Bacancy"
+    },
+    {
+      "id": 4,
+      "CompanyName": "BlueDwarfTech"
     }
   ],
   "comments": [

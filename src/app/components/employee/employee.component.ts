@@ -1,5 +1,5 @@
 import { state } from '@angular/animations';
-import { Component, ComponentFactoryResolver, DoCheck, ElementRef, Input, OnChanges, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, DoCheck, ElementRef, Input, OnChanges, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
 import { Employee } from 'src/app/Model/Employee.Model';
 import { User } from 'src/app/Model/User.Model';
@@ -42,7 +42,7 @@ export class EmployeeComponent implements OnInit{
     })
   }
   onEdit(id,employee) {
-    this.click=true
+    
     const hostViewContaierRef=this.formHost.viewContainerRef;
     hostViewContaierRef.clear()
     const componetRef= hostViewContaierRef.createComponent(AddComponent)

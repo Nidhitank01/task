@@ -58,6 +58,7 @@ export const resolveCompany = () => {
   const cService = inject(CompanyService)
   routeChanged.next('company')
   return cService.getCompanyList()
+
 }
 export const resolveBranch = () => {
   const bService = inject(BranchService)

@@ -5,6 +5,6 @@ import { Directive, ViewContainerRef } from '@angular/core';
 })
 export class FormDirective {
 
-  constructor(public viewContainerRef:ViewContainerRef) { }
+  constructor(public viewContainerRef:ViewContainerRef , public view:ViewContainerRef) { }
 
 }

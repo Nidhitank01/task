@@ -1,62 +1,72 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { Company } from 'src/app/Model/Company.Model';
 import { CompanyService } from 'src/app/Services/company.service';
+import { AddComponent } from '../add/add.component';
+import { FormDirective } from 'src/app/Directives/form.directive';
 
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
   styleUrls: ['./company.component.css']
 })
-export class CompanyComponent {
+export class CompanyComponent implements OnInit{
   CompanyList:Company[]=[]
   allow:string
   permission:any
+  private closeForm:Subscription;
+  private endEvent:Subscription;
+  private deleteCompany:Subscription
+  click:boolean=false
+  
+  @ViewChild(FormDirective) formHost:FormDirective;
+  
   constructor(private CompanyService:CompanyService,private route:ActivatedRoute){
    
     this.CompanyList=this.route.snapshot.data['companyData']
   }
   ngOnInit(){
     this.allow=this.route.snapshot.queryParams['role']
-    console.log(this.route.snapshot.routeConfig.path)
-    this.CompanyService.setCompanyList()
-  }
-   ngOnChanges(){
-    this.CompanyService.setCompanyList()
-    this.CompanyList=this.route.data['companyData']
-   }
-  onEdit(Id: any, BName: any) {
-    
-    Id.disabled = !Id.disabled;
-    BName.disabled = !BName.disabled;
-    
-  }
-  onUpdate(Id:any,Bname:any){
-    this.CompanyService.AllCompany.find((i)=>{
-  
-      if(i.id===parseInt(Id.value)){
-        i.CompanyName=Bname.value
-        Id.disabled = !Id.disabled;
-        Bname.disabled = !Bname.disabled;
-        this.ngOnChanges()
-      }
+    this.CompanyService.getCompanyList().subscribe((res:Company[])=>{
+      this.CompanyList=res
     })
-    console.log(this.CompanyList)
-  
+    
+    this.CompanyService.companyAdd.subscribe((res:Company[])=>{
+      console.log("r:",res)
+      this.CompanyList=res
+    })
+    
   }
   
-  onDelete(company:Company) {
-    console.log(typeof(company.id))
-      let index=this.CompanyService.AllCompany.findIndex((i)=>{
-        console.log(typeof(i.id))
-             return i.id===company.id
-      })
-      console.log("i",index)
-      this.CompanyService.AllCompany.splice(index,1)
-      this.ngOnChanges()
+   getCompany(){
+    this.CompanyService.getCompanyList().subscribe((res:Company[])=>{
+      this.CompanyList=res
       console.log(this.CompanyList)
+    })
+   }
+
+  onEdit(company:Company) {
+
+    const hostViewContaierRef=this.formHost.viewContainerRef;
+    hostViewContaierRef.clear()
+    const componetRef= hostViewContaierRef.createComponent(AddComponent)
+    componetRef.instance.editCompanyData=company
+    this.closeForm=componetRef.instance.cancel.subscribe(()=>{
+        this.closeForm.unsubscribe()
+        hostViewContaierRef.clear()
+   })
   }
+
+  onDelete(id:number) {
+     this.CompanyService.deleteCompany(id).subscribe((res:Company[])=>{
+      if(res){
+        console.log(res)
+        this.CompanyList=res
+      }
+     });
+  }
+
   addFav(company:Company){
     this.CompanyService.addToFav(company)
   }
