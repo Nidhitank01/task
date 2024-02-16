@@ -118,14 +118,4 @@ ExistEmployee(control:FormControl):boolean{
      return null
   }
 }
-
-// ExistCompany(control:FormControl):boolean{
-//   if(!this.CompanyList.find(c=> c.CompanyName=== control.value.CompanyName)){
-//     return true;
-//   }
-//   else{
-//     return null
-//   }
-// }
-
 }

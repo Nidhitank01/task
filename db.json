@@ -1,10 +1,10 @@
 {
   "AllEmployee": [
     {
-      "id": 3,
+      "id": 1,
       "EmployeeName": "Dhaval Tank",
       "CompanyName": "BTL",
-      "BranchName": "Zedra",
+      "BranchName": "Surat",
       "Position": "senior",
       "Gender": "Male",
       "BirthDate": "2024-02-05"
@@ -16,7 +16,88 @@
       "Position": "junior",
       "Gender": "Female",
       "BirthDate": "2024-02-06",
-      "id": 4
+      "id": 2
+    },
+    {
+      "id": 3,
+      "EmployeeName": "Priyanka Chotaliya",
+      "CompanyName": "Zedra",
+      "BranchName": "Rajkot",
+      "Position": "new Joinee",
+      "Gender": "Female",
+      "BirthDate": "2024-02-07"
+    },
+    {
+      "id": 4,
+      "EmployeeName": "Satish Chotaliya",
+      "CompanyName": "BlueDwarfTech",
+      "BranchName": "Ahemdabad",
+      "Position": "senior",
+      "Gender": "Male",
+      "BirthDate": "2023-02-08"
+    },
+    {
+      "id": 5,
+      "EmployeeName": "Ruta Vasani",
+      "CompanyName": "BrainTech labs",
+      "BranchName": "Surat",
+      "Position": "junior",
+      "Gender": "Female",
+      "BirthDate": "2024-01-16"
+    },
+    {
+      "id": 6,
+      "EmployeeName": "Zuli Diyora",
+      "CompanyName": "BTL",
+      "BranchName": "Ahemdabad",
+      "Position": "leaved",
+      "Gender": "Female",
+      "BirthDate": "2024-02-01"
+    },
+    {
+      "id": 7,
+      "EmployeeName": "Tanvi Kheni",
+      "CompanyName": "Funnel",
+      "BranchName": "vadodara",
+      "Position": "new Joinee",
+      "Gender": "Female",
+      "BirthDate": "2024-02-01"
+    },
+    {
+      "id": 8,
+      "EmployeeName": "yuvraj",
+      "CompanyName": "Zedra",
+      "BranchName": "Ahemdabad",
+      "Position": "senior",
+      "Gender": "Male",
+      "BirthDate": "2024-02-03"
+    },
+    {
+      "id": 9,
+      "EmployeeName": "hello",
+      "CompanyName": "BTL",
+      "BranchName": "Zedra",
+      "Position": "senior",
+      "Gender": "Female",
+      "BirthDate": "2024-02-03"
+    },
+    {
+      "id": 10,
+      "EmployeeName": "Mishwa Khamar",
+      "CompanyName": "Zedra",
+      "BranchName": "Ahemdabad",
+      "Position": "junior",
+      "Gender": "Female",
+      "BirthDate": "2024-02-03"
+    },
+    {
+      "id": 11,
+      "EmployeeName": "yuvraj",
+      "CompanyName": "Zedra",
+      "BranchName": "Rajkot",
+      "Position": "junior",
+      "Gender": "Male",
+      "BirthDate": "2024-02-03"
     }
   ],
   "comments": [

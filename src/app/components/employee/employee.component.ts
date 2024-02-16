@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.css'],
 })
-export class EmployeeComponent implements OnInit,OnChanges,DoCheck {
+export class EmployeeComponent implements OnInit{
   allow:string
   EmployeeList:Employee[]=[]
   permission:any
@@ -23,44 +23,24 @@ export class EmployeeComponent implements OnInit,OnChanges,DoCheck {
   type:string='text'
   searchFor:string
   private closeForm:Subscription;
+  private endEvent:Subscription;
   click:boolean=false
   constructor(private router:Router ,
     private EmployeeService:EmployeeService,
     private route:ActivatedRoute){    
     this.allow=this.route.snapshot.queryParams['role']
-    console.log(this.EmployeeList)
-    console.log(this.route.snapshot);
   }
-  @ViewChild('edit')editMode:boolean=false
-  @ViewChild('#BDate')bdate:ElementRef
- editEmployee:Employee
  @ViewChild(FormDirective) formHost:FormDirective;
- 
  ngOnInit(){
    
-    this.EmployeeService.EmployeeListChanged.subscribe((value)=>{
-      this.EmployeeList=value
-    })
-    this.EmployeeList=this.route.snapshot.data['employeeData'] 
-    
+   this.EmployeeList=this.route.snapshot.data['employeeData']
+   this.EmployeeService.EmployeeListChanged.subscribe(res=>{
+      this.EmployeeList=res
+   })
     this.EmployeeService.sortEmployee.subscribe((value)=>{
       this.sortBy=value
     })
   }
-
-  ngOnChanges(){
-    this.EmployeeService.setEmployeeList()
-    this.EmployeeList=this.route.snapshot.data['employeeData']
-   }
-
-  ngDoCheck(){
-    this.EmployeeService.searchEmployee.subscribe((value)=>{
-      this.searchFor=value
-   }) 
-  
-  }
-
-
   onEdit(id,employee) {
     this.click=true
     const hostViewContaierRef=this.formHost.viewContainerRef;
@@ -68,7 +48,7 @@ export class EmployeeComponent implements OnInit,OnChanges,DoCheck {
     const componetRef= hostViewContaierRef.createComponent(AddComponent)
     componetRef.instance.editEmployeeData=employee
     componetRef.instance.EmployeeId=id
-   this.closeForm=componetRef.instance.cancel.subscribe(()=>{
+    this.closeForm=componetRef.instance.cancel.subscribe(()=>{
         this.closeForm.unsubscribe()
        hostViewContaierRef.clear()
    })
@@ -76,8 +56,9 @@ export class EmployeeComponent implements OnInit,OnChanges,DoCheck {
 
 
   onDelete(id:number) {
-    this.EmployeeService.deleteEmployee(id)
+    this.endEvent=this.EmployeeService.deleteEmployee(id).subscribe(res=>{
+        alert ('employee deleted successfull')
+        this.endEvent.unsubscribe()
+    })
 }
-
-
 }

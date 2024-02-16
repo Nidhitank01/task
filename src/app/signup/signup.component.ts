@@ -27,8 +27,7 @@ export class SignupComponent {
       })
   }
  onSignup(){
-  console.log(this.reactiveFrom.value.username)
-  //  console.log(typeof(this.signUser))
+
    if(this.reactiveFrom.value.password===this.reactiveFrom.value.repeatPassword){
       if(this.userService.getUserInfo(this.reactiveFrom.value.user)){
         alert('user already exist')

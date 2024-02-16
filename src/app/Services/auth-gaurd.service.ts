@@ -1,4 +1,4 @@
-import { Inject, inject } from "@angular/core"
+import { Inject, Injectable, inject } from "@angular/core"
 import { LoginService } from "./login.service"
 import { ActivatedRoute, ActivatedRouteSnapshot, CanActivateFn,  Router } from "@angular/router"
 import { EmployeeService } from "./employee.service"
@@ -7,6 +7,7 @@ import { BranchService } from "./branch.service"
 import { Employee } from "../Model/Employee.Model"
 import { BehaviorSubject, map } from "rxjs"
 import { HttpClient } from "@angular/common/http"
+
 
 
 export const routeChanged=new BehaviorSubject<string>('')
@@ -47,11 +48,11 @@ export const canActivate: CanActivateFn = (
     return false
   }
 }
+
 export const resolveEmployee = () => {
   const eService = inject(EmployeeService)
   routeChanged.next('employee')
   return eService.getEmployeeList()
-  
 }
 export const resolveCompany = () => {
   const cService = inject(CompanyService)
